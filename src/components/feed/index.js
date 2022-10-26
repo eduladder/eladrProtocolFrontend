@@ -1,5 +1,17 @@
 import "./style.css";
+import { Link } from "react-router-dom";
 
 export default function Feed({ feed }) {
-  return <div className="feed">Feed</div>;
+  console.log(feed);
+  return (
+    <Link to={`/${feed.id}`}>
+      <div className="feed">
+        <div className="feed_header">
+          <div className="wallet">{feed.wallet}</div>
+          <div className="feed_description">{feed.description}</div>
+        </div>
+        <div className="feed_bg"></div>
+      </div>
+    </Link>
+  );
 }
