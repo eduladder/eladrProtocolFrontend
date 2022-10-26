@@ -1,0 +1,36 @@
+.header {
+  height: 56px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  margin: 3.5rem auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.search input {
+  outline: none;
+  border: none;
+  font-size: 3rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  background-color: lightgray;
+  border-radius: 2rem;
+}
+
+.nav_btn {
+  background-color: tan;
+  padding: 2rem;
+  font-size: 3rem;
+  border-radius: 2rem;
+}
+
+.disconnect_btn {
+  color: tan;
+  border: 5px solid tan;
+  padding: 2rem;
+  font-size: 3rem;
+  border-radius: 2rem;
+  font-weight: 600;
+}
