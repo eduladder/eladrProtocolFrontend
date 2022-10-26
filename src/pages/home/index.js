@@ -3,6 +3,7 @@ import axios from "axios";
 import { postsReducer } from "../../reducers/reducers";
 import Header from "../../components/header";
 import Feed from "../../components/feed";
+import "./style.css";
 
 export default function Home() {
   const [{ loading, error, feeds }, dispatch] = useReducer(postsReducer, {
