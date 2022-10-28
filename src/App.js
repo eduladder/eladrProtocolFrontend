@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import ConnectWallet from "./pages/connect_wallet";
 import Home from "./pages/home";
+import Upload from "./pages/upload";
 import ViewFeed from "./pages/view_feed";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} exact />
+        <Route path="/upload" element={<Upload />} exact />
         <Route path="/connect_wallet" element={<ConnectWallet />} exact />
         <Route path="/:id" element={<ViewFeed />} exact />
       </Routes>
