@@ -13,7 +13,7 @@
   padding: 1.5rem 1rem 1.5rem 2rem;
   background-color: lightgray;
   border-radius: 2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   width: 60%;
 }
 
@@ -108,7 +108,6 @@
 
 .file_box {
   list-style: none;
-
   background-color: #f55e3038;
   border-radius: 5px;
   display: flex;
