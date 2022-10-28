@@ -10,7 +10,7 @@
   outline: none;
   border: none;
   font-size: 2.25rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 1.5rem 1rem 1.5rem 2rem;
   background-color: lightgray;
   border-radius: 2rem;
   margin-bottom: 5rem;
@@ -21,15 +21,14 @@
   color: #000;
   font-family: inherit;
   font-size: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 2.5rem;
   margin-left: 1px;
   outline: none;
-  padding: 5px 15px;
+  padding: 24px 30px;
   position: relative;
   resize: none;
   width: 60%;
   border: none;
-
   border-radius: 1rem;
   background-color: lightgray;
 }
@@ -130,7 +129,7 @@
   background-color: #f55321;
   cursor: pointer;
   font-weight: 600;
-  margin-top: 4rem;
+  margin-top: 2rem;
   padding: 1.5rem 10rem;
   font-size: 3rem;
   color: #fff;
