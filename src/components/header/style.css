@@ -12,7 +12,7 @@
 .search input {
   outline: none;
   border: none;
-  font-size: 3rem;
+  font-size: 1.25rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
   background-color: lightgray;
   border-radius: 2rem;
@@ -20,16 +20,16 @@
 
 .nav_btn {
   background-color: tan;
-  padding: 2rem;
-  font-size: 3rem;
-  border-radius: 2rem;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 1rem;
 }
 
 .disconnect_btn {
   color: tan;
   border: 5px solid tan;
-  padding: 2rem;
-  font-size: 3rem;
-  border-radius: 2rem;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 1rem;
   font-weight: 600;
 }
