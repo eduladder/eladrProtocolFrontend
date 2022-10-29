@@ -39,6 +39,11 @@ export default function Upload() {
       alert('Please provide a description.')
       return
     }
+    else if (!file) {
+      setStatus('No File Chosen')
+      alert('Please select a file.')
+      return
+    }
     else {
       const formData = new FormData();
       formData.append('file', file);
