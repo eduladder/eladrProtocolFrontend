@@ -10,7 +10,7 @@
   outline: none;
   border: none;
   font-size: 2.25rem;
-  padding: 1.5rem 1rem 1.5rem 2rem;
+  padding: 0.5rem 1.5rem 0.5rem 1rem;
   background-color: lightgray;
   border-radius: 2rem;
   margin-bottom: 3rem;
@@ -129,7 +129,7 @@
   cursor: pointer;
   font-weight: 600;
   margin-top: 2rem;
-  padding: 1.5rem 10rem;
-  font-size: 3rem;
+  padding: 1.25rem 7rem;
+  font-size: 2rem;
   color: #fff;
 }
