@@ -1,8 +1,9 @@
 import "./style.css";
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../../components/header";
 import axios from "axios";
+import Footer from "../../components/footer";
 
 export default function ViewFeed() {
   const thumbnailUrl =
@@ -50,8 +51,12 @@ export default function ViewFeed() {
           <br />
           <h3>Uploaded By: {postedBy}</h3>
           <br />
+          <Link to={`/report/${id}`} className="report_link">
+            Report
+          </Link>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

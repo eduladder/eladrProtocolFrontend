@@ -1,0 +1,21 @@
+.contact {
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.contact_box {
+  color: #000;
+  font-family: inherit;
+  font-size: 30px;
+  margin-top: 2.5rem;
+  outline: none;
+  padding: 24px 30px;
+  position: relative;
+  resize: none;
+  width: 60%;
+  border: none;
+  border-radius: 1rem;
+  background-color: lightgray;
+}

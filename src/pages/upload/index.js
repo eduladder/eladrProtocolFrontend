@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faFileAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import Footer from "../../components/footer";
 
 export default function Upload() {
   const [file, setFile] = useState(null);
@@ -166,6 +167,7 @@ export default function Upload() {
           <p>Upload status: {status}</p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

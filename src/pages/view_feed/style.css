@@ -2,7 +2,16 @@
   display: flex;
   margin: 300px auto;
   justify-content: space-around;
+  position: relative;
 }
 .details {
   align-self: center;
+}
+
+.report_link {
+  position: absolute;
+  font-size: 1.2rem;
+  color: red;
+  bottom: 0;
+  right: 266px;
 }

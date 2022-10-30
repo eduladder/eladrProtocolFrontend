@@ -1,5 +1,6 @@
 import "./style.css";
 import { Link } from "react-router-dom";
+import Footer from "../../components/footer";
 
 export default function ConnectWallet() {
   return (
@@ -7,6 +8,7 @@ export default function ConnectWallet() {
       <Link to={"/"}>
         <button className="connect_wallet">Connect Wallet</button>
       </Link>
+      <Footer />
     </div>
   );
 }
