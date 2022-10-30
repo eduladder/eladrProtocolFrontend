@@ -1,10 +1,8 @@
-.content {
-    width: 50%;
-    float: left;
-    margin-top: 150px;
+.view_feed_container {
+  display: flex;
+  margin: 300px auto;
+  justify-content: space-around;
 }
-
 .details {
-    margin-left: 50%;
-    margin-top: 150px;
+  align-self: center;
 }

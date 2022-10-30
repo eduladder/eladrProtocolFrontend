@@ -23,7 +23,7 @@ export default function ViewFeed() {
   axios
     .get(`${process.env.REACT_APP_BACKEND_URL}/database/${id}`, axiosConfig)
     .then((response) => {
-      console.log(response);
+      console.log("response-->", response);
       const { title, description, wallet, hashvideo } = response.data;
       setTitle(title);
       setDescription(description);
@@ -33,7 +33,7 @@ export default function ViewFeed() {
   return (
     <div className="view_feed">
       <Header />
-      <div>
+      <div className="view_feed_container">
         <div className="content">
           <a
             href={`${ipfsGateway}/${contentHash}`}
@@ -44,15 +44,6 @@ export default function ViewFeed() {
           </a>
         </div>
         <div className="details">
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
           <h3>Title: {title}</h3>
           <br />
           <h3>Description: {description}</h3>
