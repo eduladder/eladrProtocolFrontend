@@ -39,7 +39,7 @@ export default function SearchMenu() {
     }
   };
 
-  const goToSeachResult = async () => {
+  const goToSearchResult = async () => {
     if (results && results.length !== 0) {
       navigate(`${results[0].id}`);
       setResults("");
@@ -76,13 +76,13 @@ export default function SearchMenu() {
                 setSearchTerm("");
               }}
             >
-              {result.title}
+              {!result.title.includes(searchTerm) && result.description.includes(searchTerm) ? result.description : result.title}
             </Link>
           ))}
         </div>
       )}
 
-      <button className="nav_btn" onClick={goToSeachResult}>
+      <button className="nav_btn" onClick={goToSearchResult}>
         Search
       </button>
     </div>
