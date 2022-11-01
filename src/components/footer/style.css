@@ -1,9 +1,9 @@
 .footer {
   color: red;
-  bottom: 0;
+  bottom: 1;
   position: absolute;
   display: flex;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 600;
   left: 50%;
   transform: translate(-50%);

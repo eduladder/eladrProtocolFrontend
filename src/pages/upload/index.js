@@ -31,7 +31,7 @@ export default function Upload() {
     try{
       const currentTitle = title.current.value;
       const currentDesc = description.current.value;
-      
+
       if (!currentTitle) {
         alert("Please provide a title.");
         return;
@@ -62,6 +62,7 @@ export default function Upload() {
           name: currentTitle,
           description: currentDesc,
           wallet: "addr1_dummy",
+          fileHash: fileHash
         }, 
         {
           headers: {

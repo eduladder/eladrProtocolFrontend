@@ -14,7 +14,8 @@ export default function ViewFeed() {
   const [description, setDescription] = useState("");
   const [postedBy, setPostedBy] = useState("");
   const { id } = useParams();
-  console.log(id);
+  const metaHash = id
+  console.log(metaHash);
   const axiosConfig = {
     headers: {
       "Content-Type": "application/json",
@@ -22,14 +23,14 @@ export default function ViewFeed() {
     mode: "cors",
   };
   axios
-    .get(`${process.env.REACT_APP_BACKEND_URL}/database/${id}`, axiosConfig)
+    .get(`${process.env.REACT_APP_BACKEND_URL}/meta/${metaHash}`, axiosConfig)
     .then((response) => {
       console.log("response-->", response);
-      const { title, description, wallet, hashvideo } = response.data;
-      setTitle(title);
+      const { name, description, wallet, fileHash } = response.data;
+      setTitle(name);
       setDescription(description);
       setPostedBy(wallet);
-      setContentHash(hashvideo);
+      setContentHash(fileHash);
     });
   return (
     <div className="view_feed">
@@ -37,7 +38,7 @@ export default function ViewFeed() {
       <div className="view_feed_container">
         <div className="content">
           <a
-            href={`${ipfsGateway}/${contentHash}`}
+            href={`${ipfsGateway}${contentHash}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -51,7 +52,7 @@ export default function ViewFeed() {
           <br />
           <h3>Uploaded By: {postedBy}</h3>
           <br />
-          <Link to={`/report/${id}`} className="report_link">
+          <Link to={`/report/${metaHash}`} className="report_link">
             Report
           </Link>
         </div>
