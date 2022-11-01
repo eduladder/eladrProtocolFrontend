@@ -41,7 +41,7 @@ export default function SearchMenu() {
 
   const goToSearchResult = async () => {
     if (results && results.length !== 0) {
-      navigate(`${results[0].id}`);
+      navigate(`${results[0].hashmeta}`);
       setResults("");
       setSearchTerm("");
     } else {
@@ -68,7 +68,7 @@ export default function SearchMenu() {
         <div className="search_result_box" ref={results_box}>
           {results.map((result, i) => (
             <Link
-              to={`/${result.id}`}
+              to={`/${result.hashmeta}`}
               className="search_result_box_item"
               key={i}
               onClick={() => {

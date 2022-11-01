@@ -14,8 +14,8 @@
 .feed_header {
   padding: 10px 25px;
 }
-.wallet {
-  font-size: 2rem;
+.feed_title {
+  font-size: 1.5rem;
 }
 .feed_description {
   font-size: 1.2rem;
