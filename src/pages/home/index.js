@@ -31,16 +31,13 @@ export default function Home() {
   return (
     <div className="home">
       <Header />
-
-      {loading ? (
-        <h1>Loading</h1>
-      ) : (
-        <div className="feeds">
-          {feeds.reverse().map((feed, i) => (
-            <Feed feed={feed} key={i} />
-          ))}
-        </div>
-      )}
+      <div className="feeds">
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : (
+          feeds.reverse().map((feed, i) => <Feed feed={feed} key={i} />)
+        )}
+      </div>
     </div>
   );
 }

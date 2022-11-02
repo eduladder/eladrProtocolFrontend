@@ -2,10 +2,10 @@ import "./style.css";
 import SearchMenu from "./SearchMenu";
 import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ searchedTerm, seachedResults }) {
   return (
     <div className="header">
-      <SearchMenu />
+      <SearchMenu searchedTerm={searchedTerm} seachedResults={seachedResults} />
       <Link to={"/"}>
         <div className="nav_btn">Home</div>
       </Link>
