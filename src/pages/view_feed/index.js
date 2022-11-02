@@ -13,8 +13,7 @@ export default function ViewFeed() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [postedBy, setPostedBy] = useState("");
-  const { id } = useParams();
-  const metaHash = id
+  const { metaHash } = useParams();
   console.log(metaHash);
   const axiosConfig = {
     headers: {
