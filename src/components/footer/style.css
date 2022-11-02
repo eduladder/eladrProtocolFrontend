@@ -1,6 +1,6 @@
 .footer {
   color: red;
-  bottom: 1;
+  bottom: 0;
   position: absolute;
   display: flex;
   font-size: 1rem;
