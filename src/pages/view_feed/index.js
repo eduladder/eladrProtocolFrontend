@@ -13,6 +13,7 @@ export default function ViewFeed() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [postedBy, setPostedBy] = useState("");
+  const [fileType, setFileType] = useState("")
   const { metaHash } = useParams();
   console.log(metaHash);
   const axiosConfig = {
@@ -25,11 +26,12 @@ export default function ViewFeed() {
     .get(`${process.env.REACT_APP_BACKEND_URL}/meta/${metaHash}`, axiosConfig)
     .then((response) => {
       console.log("response-->", response);
-      const { name, description, wallet, fileHash } = response.data;
+      const { name, description, wallet, fileHash, fileType } = response.data;
       setTitle(name);
       setDescription(description);
       setPostedBy(wallet);
       setContentHash(fileHash);
+      setFileType(fileType)
     });
   return (
     <div className="view_feed">
@@ -51,6 +53,7 @@ export default function ViewFeed() {
           <br />
           <h3>Uploaded By: {postedBy}</h3>
           <br />
+          <h3>File Type: {fileType}</h3>
           <Link to={`/report/${metaHash}`} className="report_link">
             Report
           </Link>
