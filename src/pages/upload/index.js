@@ -53,7 +53,8 @@ export default function Upload() {
           },
           mode: "cors",
         })
-        const fileHash = data.split("/").at(-1)
+        const fileHash = data.fileHash
+        const fileType = data.fileType
         console.log(`IPFS hash of uploaded file: ${fileHash}`)
 
         setStatus("Uploading metadata...");
@@ -62,7 +63,8 @@ export default function Upload() {
           name: currentTitle,
           description: currentDesc,
           wallet: "addr1_dummy",
-          fileHash: fileHash
+          fileHash: fileHash,
+          fileType: fileType
         }, 
         {
           headers: {
