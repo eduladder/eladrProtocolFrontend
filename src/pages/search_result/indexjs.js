@@ -1,4 +1,3 @@
-import { faHourglass1 } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom";
 import Feed from "../../components/feed";
 import Header from "../../components/header";

@@ -1,4 +1,9 @@
-export default function userReducer(state = null, action) {
+import Cookies from "js-cookie";
+
+export default function userReducer(
+  state = Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null,
+  action
+) {
   switch (action.type) {
     case "WALLETCONNECTED":
       return action.payload;

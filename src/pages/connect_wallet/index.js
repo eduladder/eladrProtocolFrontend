@@ -1,71 +1,91 @@
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/footer";
 import { Component, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 
-const { utils } = require("@stricahq/typhonjs")
+const { utils } = require("@stricahq/typhonjs");
 
 export default function ConnectWallet() {
-  const [walletSelected, setWalletSelected] = useState('')
-  const [walletAddress, setWalletAddress] = useState({})
-  let [wallets, setWallets] = useState([])
-
-  
+  const [walletSelected, setWalletSelected] = useState("");
+  const [walletAddress, setWalletAddress] = useState({});
+  let [wallets, setWallets] = useState([]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const enableWallet = async () => {
     try {
-        console.log(wallets)
-        console.log(window.cardano)
-        const walletAPI = await window?.cardano?.[walletSelected].enable()
+      console.log(wallets);
+      console.log(window.cardano);
+      const walletAPI = await window?.cardano?.[walletSelected].enable();
 
-        const rawAddress = await walletAPI.getUsedAddresses()
+      const rawAddress = await walletAPI.getUsedAddresses();
 
-        const changeAddress = utils.getAddressFromHex(rawAddress.toString()).getBech32()        
-        console.log(changeAddress)
-        setWalletAddress(changeAddress)
-       
-    } catch(err) {
-        console.log(err);
+      const changeAddress = utils
+        .getAddressFromHex(rawAddress.toString())
+        .getBech32();
+      console.log(changeAddress);
+      setWalletAddress(changeAddress);
+      if (changeAddress) {
+        dispatch({
+          type: "WALLETCONNECTED",
+          payload: { wallet_address: changeAddress },
+        });
+        Cookies.set("user", JSON.stringify({ wallet_address: changeAddress }));
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err);
     }
-}
+  };
   const detectWallets = () => {
-    const wlet = []
+    const wlet = [];
     setTimeout(() => {}, 2000);
     for (const key in window.cardano) {
-        if (window.cardano[key].enable && wallets.indexOf(key) === -1) {
-            wlet.push(key)
-        }
+      if (window.cardano[key].enable && wallets.indexOf(key) === -1) {
+        wlet.push(key);
+      }
     }
     // if (wlet.length === 0 && count < 3) {
-      
+
     //   return;
     // }
 
-    setWallets(wlet)
+    setWallets(wlet);
 
-    return wlet
+    return wlet;
 
     // console.log(wallets, window.cardano)
-
-  }
+  };
 
   useEffect(() => {
     const wlet = detectWallets();
-    console.log(wallets)
-  }, [])
+    console.log(wallets);
+  }, []);
 
   return (
     <div className="wallet_connect_wrapper">
       <div className="wallet_radio_wrapper">
-        {wallets.map(key => 
-        <div key={key}>
-          <input key={key} type="radio" value={key} name="wallet" onChange={() => { setWalletSelected(key) }}/> {key}<br/>
-        </div>
-        )}
+        {wallets.map((key) => (
+          <div key={key}>
+            <input
+              key={key}
+              type="radio"
+              value={key}
+              name="wallet"
+              onChange={() => {
+                setWalletSelected(key);
+              }}
+            />
+            {key}
+            <br />
+          </div>
+        ))}
       </div>
-      
-      
-        <button className="connect_wallet" onClick={enableWallet}>Connect Wallet</button>
+      <button className="connect_wallet" onClick={enableWallet}>
+        Connect Wallet
+      </button>
       <Footer />
     </div>
   );

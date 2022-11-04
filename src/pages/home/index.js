@@ -4,6 +4,7 @@ import { postsReducer } from "../../reducers/reducers";
 import Header from "../../components/header";
 import Feed from "../../components/feed";
 import "./style.css";
+import { useSelector } from "react-redux";
 
 export default function Home() {
   const [{ loading, error, feeds }, dispatch] = useReducer(postsReducer, {
@@ -11,6 +12,8 @@ export default function Home() {
     feeds: [],
     error: "",
   });
+  const { user } = useSelector((state) => ({ ...state }));
+
   useEffect(() => {
     getAllFeeds();
   }, []);

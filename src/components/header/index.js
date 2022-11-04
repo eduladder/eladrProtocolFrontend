@@ -1,8 +1,17 @@
 import "./style.css";
 import SearchMenu from "./SearchMenu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
 
 export default function Header({ searchedTerm, seachedResults }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const disconnect = () => {
+    Cookies.set("user", "");
+    dispatch({ type: "WALLETDISCONNECTED" });
+    navigate("/connect_wallet");
+  };
   return (
     <div className="header">
       <SearchMenu searchedTerm={searchedTerm} seachedResults={seachedResults} />
@@ -13,9 +22,9 @@ export default function Header({ searchedTerm, seachedResults }) {
         <div className="nav_btn">Upload</div>
       </Link>
 
-      <Link to="/connect_wallet" className="disconnect_btn">
+      <button className="disconnect_btn" onClick={disconnect}>
         Disconnect
-      </Link>
+      </button>
     </div>
   );
 }
