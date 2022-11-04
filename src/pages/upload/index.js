@@ -6,15 +6,16 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faFileAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Footer from "../../components/footer";
+import { useSelector } from "react-redux";
 
 export default function Upload() {
   const [file, setFile] = useState(null);
-  // const [fileHash, setFileHash] = useState("");
-  // const [metaHash, setMetaHash] = useState("");
+
   const [status, setStatus] = useState("No File Chosen");
   const title = useRef(null);
   const description = useRef(null);
-  // const customConfig =
+  const { user } = useSelector((state) => ({ ...state }));
+  console.log("user-->", user);
 
   const handleFile = (e) => {
     setFile(e.target.files.item(0));
@@ -28,7 +29,7 @@ export default function Upload() {
   };
 
   const uploadFile = async () => {
-    try{
+    try {
       const currentTitle = title.current.value;
       const currentDesc = description.current.value;
 
@@ -47,34 +48,40 @@ export default function Upload() {
         formData.append("file", file);
 
         setStatus("Uploading file...");
-        let { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/file`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          mode: "cors",
-        })
-        const fileHash = data.fileHash
-        const fileType = data.fileType
-        console.log(`IPFS hash of uploaded file: ${fileHash}`)
+        let { data } = await axios.post(
+          `${process.env.REACT_APP_BACKEND_URL}/file`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            mode: "cors",
+          }
+        );
+        const fileHash = data.fileHash;
+        const fileType = data.fileType;
+        console.log(`IPFS hash of uploaded file: ${fileHash}`);
 
         setStatus("Uploading metadata...");
-        ({ data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/meta`, 
-        {
-          name: currentTitle,
-          description: currentDesc,
-          wallet: "addr1_dummy",
-          fileHash: fileHash,
-          fileType: fileType
-        }, 
-        {
-          headers: {
-            "Content-Type": "application/json",
+        ({ data } = await axios.post(
+          `${process.env.REACT_APP_BACKEND_URL}/meta`,
+          {
+            name: currentTitle,
+            description: currentDesc,
+            wallet: user.wallet_address,
+            fileHash: fileHash,
+            fileType: fileType,
           },
-        }))
-        const metaHash = data.split("/").at(-1)
-        console.log(`IPFS hash of uploaded metadata: ${metaHash}`)
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        ));
+        const metaHash = data.split("/").at(-1);
+        console.log(`IPFS hash of uploaded metadata: ${metaHash}`);
 
-        setStatus('Updating database...')
+        setStatus("Updating database...");
         const dbRecord = {
           vidHash: fileHash,
           metaHash: metaHash,
@@ -87,21 +94,20 @@ export default function Upload() {
           dbRecord,
           {
             headers: {
-            "Content-Type": "application/json",
+              "Content-Type": "application/json",
             },
           }
-        )
-        console.log(response3)
-        setStatus('Upload Complete.')
+        );
+        console.log(response3);
+        setStatus("Upload Complete.");
         setFile(null);
         title.current.value = null;
         description.current.value = null;
       }
-    }
-    catch (err) {
-      console.log(err)
-      setStatus('Unexpected error. Please try again.')
-      return
+    } catch (err) {
+      console.log(err);
+      setStatus("Unexpected error. Please try again.");
+      return;
     }
   };
 

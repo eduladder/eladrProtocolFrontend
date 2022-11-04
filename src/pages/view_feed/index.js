@@ -6,6 +6,7 @@ import axios from "axios";
 import Footer from "../../components/footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import { saveAs } from "file-saver";
 
 export default function ViewFeed() {
   const thumbnailUrl =
@@ -35,11 +36,14 @@ export default function ViewFeed() {
       setContentHash(fileHash);
       setFileType(fileType.split("/")[0]);
     });
+
+  const downloadFile = () => {
+    saveAs(`${ipfsGateway}${contentHash}`, contentHash);
+  };
   return (
     <div className="view_feed">
       <Header />
       <div className="view_feed_container">
-        {console.log("FileType-->", fileType)}
         <div className="content">
           {fileType === "image" && (
             <>
@@ -54,54 +58,36 @@ export default function ViewFeed() {
                   width="600px"
                 />
               </a>
-              <Link
-                to={`${ipfsGateway}${contentHash}`}
-                target="_blank"
-                download
-              >
-                <span className="download_btn">Download</span>
-              </Link>
+              <button onClick={downloadFile} className="download_btn">
+                <span>Download</span>
+              </button>
             </>
           )}
           {fileType === "video" && (
             <>
               <video controls src={`${ipfsGateway}${contentHash}`} />
-              <Link
-                to={`${ipfsGateway}${contentHash}`}
-                target="_blank"
-                download
-              >
-                <span className="download_btn">Download</span>
-              </Link>
+              <button onClick={downloadFile} className="download_btn">
+                <span>Download</span>
+              </button>
             </>
           )}
           {fileType === "audio" && (
             <>
               <audio controls src={`${ipfsGateway}${contentHash}`} />
-              <Link
-                to={`${ipfsGateway}${contentHash}`}
-                target="_blank"
-                download
-              >
-                <span className="download_btn">Download</span>
-              </Link>
+              <button onClick={downloadFile} className="download_btn">
+                <span>Download</span>
+              </button>
             </>
           )}
           {fileType !== "image" &&
             fileType !== "video" &&
             fileType !== "audio" &&
             contentHash && (
-              <Link
-                to={`${ipfsGateway}${contentHash}`}
-                target="_blank"
-                download
-              >
-                <div className="file_box ">
-                  <FontAwesomeIcon icon={faFileAlt} />
-                  <p>{contentHash}</p>
-                  <div className="actions"></div>
-                </div>
-              </Link>
+              <div className="file_box " onClick={downloadFile}>
+                <FontAwesomeIcon icon={faFileAlt} />
+                <p>{contentHash}</p>
+                <div className="actions"></div>
+              </div>
             )}
         </div>
         <div className="details">

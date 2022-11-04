@@ -115,6 +115,7 @@
   padding: 1.2em 1.5em;
   color: #f55321;
   gap: 1.2rem;
+  cursor: pointer;
 }
 
 .actions {

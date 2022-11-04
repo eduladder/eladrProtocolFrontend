@@ -52,7 +52,7 @@ export default function ConnectWallet() {
     //   return;
     // }
 
-    setWallets(wlet);
+    wlet.length !== 0 && setWallets(wlet);
 
     return wlet;
 
@@ -61,7 +61,7 @@ export default function ConnectWallet() {
 
   useEffect(() => {
     const wlet = detectWallets();
-    console.log(wallets);
+    console.log("hello");
   }, []);
 
   return (
@@ -83,7 +83,13 @@ export default function ConnectWallet() {
           </div>
         ))}
       </div>
-      <button className="connect_wallet" onClick={enableWallet}>
+      <button
+        className="connect_wallet"
+        onClick={() => {
+          detectWallets();
+          wallets.length !== 0 ? enableWallet() : detectWallets();
+        }}
+      >
         Connect Wallet
       </button>
       <Footer />
