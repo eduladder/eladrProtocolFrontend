@@ -65,7 +65,7 @@ export default function ViewFeed() {
           )}
           {fileType === "video" && (
             <>
-              <video controls src={`${ipfsGateway}${contentHash}`} />
+              <video controls src={`${ipfsGateway}${contentHash}`} height="500px" width="600px" />
               <button onClick={downloadFile} className="download_btn">
                 <span>Download</span>
               </button>
@@ -95,7 +95,7 @@ export default function ViewFeed() {
           <br />
           <h3>Description: {description}</h3>
           <br />
-          <h3>Uploaded By: {postedBy}</h3>
+          <h3>Uploaded By:</h3> <p>{postedBy}</p>
           <br />
           <h3>File Type: {fileType}</h3>
           <Link to={`/report/${metaHash}`} className="report_link">
