@@ -15,10 +15,8 @@ export default function ConnectWallet() {
   const enableWallet = async () => {
     try {
         console.log(wallets)
-        setWalletSelected(wallets[0])
-        // console.log(walletSelected)
         console.log(window.cardano)
-        const walletAPI = await window?.cardano?.[wallets[0]].enable()
+        const walletAPI = await window?.cardano?.[walletSelected].enable()
 
         // const cardanoWasm = await loadCardanoWasm()
 
