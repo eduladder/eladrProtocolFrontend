@@ -18,13 +18,11 @@ export default function ConnectWallet() {
         console.log(window.cardano)
         const walletAPI = await window?.cardano?.[walletSelected].enable()
 
-        // const cardanoWasm = await loadCardanoWasm()
-
         const rawAddress = await walletAPI.getUsedAddresses()
 
         const changeAddress = utils.getAddressFromHex(rawAddress.toString()).getBech32()        
         console.log(changeAddress)
-        setWalletAddress()
+        setWalletAddress(changeAddress)
        
     } catch(err) {
         console.log(err);
@@ -53,7 +51,6 @@ export default function ConnectWallet() {
 
   useEffect(() => {
     const wlet = detectWallets();
-    
     console.log(wallets)
   }, [])
 
@@ -62,14 +59,13 @@ export default function ConnectWallet() {
       <div className="wallet_radio_wrapper">
         {wallets.map(key => 
         <div key={key}>
-          <input key={key} type="radio" value={key} name={key} onChange={() => { setWalletSelected(key) }}/> {key}<br/>
+          <input key={key} type="radio" value={key} name="wallet" onChange={() => { setWalletSelected(key) }}/> {key}<br/>
         </div>
         )}
       </div>
       
-      <Link to={"/"}>
+      
         <button className="connect_wallet" onClick={enableWallet}>Connect Wallet</button>
-      </Link>
       <Footer />
     </div>
   );
