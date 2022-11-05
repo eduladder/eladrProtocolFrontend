@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Price from "../price";
 
 export default function Header({ searchedTerm, seachedResults }) {
   const dispatch = useDispatch();
@@ -53,11 +54,6 @@ export default function Header({ searchedTerm, seachedResults }) {
   };
   return (
     <div className="header">
-      <img
-        src="https://eduladder.com/images/app/edu.png"
-        width="170"
-        height="100"
-      />
       <SearchMenu searchedTerm={searchedTerm} seachedResults={seachedResults} />
       <Link to={"/"}>
         <div className="nav_btn">Home</div>
@@ -70,14 +66,7 @@ export default function Header({ searchedTerm, seachedResults }) {
         Disconnect
       </button>
 
-      <div className="eladr_price">
-        <img
-          src="https://camo.githubusercontent.com/cd2ef7ae3c1a5ec66d20a154230ec52c32d015d53fbcaae658451e69732267ae/68747470733a2f2f692e696d6775722e636f6d2f505169656c756f2e706e67"
-          width="50"
-          height="50"
-        />
-        <p> INR(₹): {eladInr.toFixed(5)}</p>
-      </div>
+      <Price />
     </div>
   );
 }
