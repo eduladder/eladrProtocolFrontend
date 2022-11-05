@@ -58,25 +58,21 @@ export default function ViewFeed() {
                   width="600px"
                 />
               </a>
-              <button onClick={downloadFile} className="download_btn">
-                <span>Download</span>
-              </button>
             </>
           )}
           {fileType === "video" && (
             <>
-              <video controls src={`${ipfsGateway}${contentHash}`} height="500px" width="600px" />
-              <button onClick={downloadFile} className="download_btn">
-                <span>Download</span>
-              </button>
+              <video
+                controls
+                src={`${ipfsGateway}${contentHash}`}
+                height="500px"
+                width="600px"
+              />
             </>
           )}
           {fileType === "audio" && (
             <>
               <audio controls src={`${ipfsGateway}${contentHash}`} />
-              <button onClick={downloadFile} className="download_btn">
-                <span>Download</span>
-              </button>
             </>
           )}
           {fileType !== "image" &&

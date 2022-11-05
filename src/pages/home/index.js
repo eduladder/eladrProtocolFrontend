@@ -36,7 +36,7 @@ export default function Home() {
         {loading ? (
           <h1>Loading...</h1>
         ) : (
-          feeds.reverse().map((feed, i) => <Feed feed={feed} key={i} />)
+          feeds.reverse().map((feed, i) => <Feed feed={feed} key={i} home />)
         )}
       </div>
     </div>
