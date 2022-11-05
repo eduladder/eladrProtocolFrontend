@@ -1,0 +1,39 @@
+.view_feed_container {
+  display: flex;
+  margin-top: 300px;
+  justify-content: space-around;
+  position: relative;
+}
+.details {
+  align-self: center;
+}
+
+.address_link {
+  color: rgb(0, 119, 255);
+}
+
+.report_link {
+  position: absolute;
+  font-size: 1.2rem;
+  color: red;
+  bottom: -120px;
+  right: 225px;
+  border: none;
+  cursor: pointer;
+}
+
+.content .file_box {
+  font-size: 1.5rem;
+}
+.download_btn {
+  position: absolute;
+  bottom: -110px;
+  background: #f55321;
+  padding: 2rem 3rem;
+  font-size: 1.5rem;
+  color: #fff;
+  border-radius: 10px;
+  left: 24%;
+  cursor: pointer;
+  border: none;
+}

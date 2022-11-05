@@ -1,0 +1,14 @@
+.footer {
+  color: red;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 600;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+div .footer_item {
+  padding: 2rem;
+}

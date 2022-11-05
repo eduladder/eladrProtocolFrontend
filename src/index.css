@@ -1,0 +1,14 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  /* background: var(--bg-secondary); */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
