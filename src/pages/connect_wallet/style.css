@@ -16,3 +16,14 @@ a {
   background-color: red;
   color: white;
 }
+.connect_wallet_nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+}

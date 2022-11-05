@@ -5,6 +5,7 @@ import { Component, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import axios from "axios";
+import Price from "../../components/price";
 
 const { utils } = require("@stricahq/typhonjs");
 const [name, fingerPrint, policyId] = [
@@ -106,6 +107,15 @@ export default function ConnectWallet() {
 
   return (
     <div className="wallet_connect_wrapper">
+      <div className="connect_wallet_nav">
+        <img
+          src="https://eduladder.com/images/app/edu.png"
+          width="170"
+          height="100"
+        />
+        <Price />
+      </div>
+
       <div className="wallet_radio_wrapper">
         {wallets.map((key) => (
           <div key={key}>
