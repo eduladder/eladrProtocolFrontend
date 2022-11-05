@@ -109,6 +109,7 @@ export default function ConnectWallet() {
                 setWalletSelected(key);
               }}
             />
+            <img src={window.cardano[key].icon} width="25" height="25" />
             {key}
             <br />
           </div>

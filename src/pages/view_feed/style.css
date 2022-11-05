@@ -8,6 +8,10 @@
   align-self: center;
 }
 
+.address_link {
+  color: rgb(0, 119, 255);
+}
+
 .report_link {
   position: absolute;
   font-size: 1.2rem;

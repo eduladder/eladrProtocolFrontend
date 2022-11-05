@@ -91,7 +91,8 @@ export default function ViewFeed() {
           <br />
           <h3>Description: {description}</h3>
           <br />
-          <h3>Uploaded By:</h3> <p>{postedBy}</p>
+          <h3>Uploaded By:</h3> <a className="address_link" href={`https://cardanoscan.io/address/${postedBy}`} title="watch address on cardanoscan" target="_blank" rel="noopener noreferrer" >{`${postedBy.slice(0, 9)}......${postedBy.slice(-9)}`}</a>
+          <br />
           <br />
           <h3>File Type: {fileType}</h3>
           <Link to={`/report/${metaHash}`} className="report_link">
