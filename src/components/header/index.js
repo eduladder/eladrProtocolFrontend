@@ -54,9 +54,9 @@ export default function Header({ searchedTerm, seachedResults }) {
   return (
     <div className="header">
       <img
-        src="https://camo.githubusercontent.com/cd2ef7ae3c1a5ec66d20a154230ec52c32d015d53fbcaae658451e69732267ae/68747470733a2f2f692e696d6775722e636f6d2f505169656c756f2e706e67"
-        width="80"
-        height="80"
+        src="https://eduladder.com/images/app/edu.png"
+        width="170"
+        height="100"
       />
       <SearchMenu searchedTerm={searchedTerm} seachedResults={seachedResults} />
       <Link to={"/"}>
