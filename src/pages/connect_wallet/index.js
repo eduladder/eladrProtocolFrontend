@@ -4,10 +4,14 @@ import Footer from "../../components/footer";
 import { Component, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
-import axios from "axios"
+import axios from "axios";
 
 const { utils } = require("@stricahq/typhonjs");
-const [name, fingerPrint, policyId] = ['EduladderToken', 'asset1ny2ehvl20cp5y7mmn5qq332sgdncdmsgrcqlwh', '2d420236ffaada336c21e3f4520b799f6e246d8618f2fc89a4907da6']
+const [name, fingerPrint, policyId] = [
+  "EduladderToken",
+  "asset1ny2ehvl20cp5y7mmn5qq332sgdncdmsgrcqlwh",
+  "2d420236ffaada336c21e3f4520b799f6e246d8618f2fc89a4907da6",
+];
 
 // [process.env.TOKEN_NAME, process.env.TOKEN_FINGER_PRINT, process.env.TOKEN_POLICY_ID]
 
@@ -18,11 +22,12 @@ export default function ConnectWallet() {
   const dispatch = useDispatch();
 
   const detectWallets = () => {
-    if(!window.cardano) {
-      const message = "Please install a Cardano wallet extension like Nami, Eternl or Yoroi on your browser, before using this application."
-      alert(message)
-      console.log(message)
-      return
+    if (!window.cardano) {
+      const message =
+        "Please install a Cardano wallet extension like Nami, Eternl or Yoroi on your browser, before using this application.";
+      alert(message);
+      console.log(message);
+      return;
     }
     const wlet = [];
     setTimeout(() => {}, 2000);
@@ -37,25 +42,28 @@ export default function ConnectWallet() {
 
   const hasEladrBalance = async (address) => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/evaluvate/${address.toString()}`)
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/evaluvate/${address.toString()}`
+      );
 
       for (let token of data) {
-        const balance = token.balance.replace(',', '')
-        if (token.name === name && 
-          token.fingerPrint === fingerPrint && 
+        const balance = token.balance.replace(",", "");
+        if (
+          token.name === name &&
+          token.fingerPrint === fingerPrint &&
           token.policy === policyId &&
-          parseFloat(balance) > 0 ) {
-            return true
+          parseFloat(balance) > 0
+        ) {
+          return true;
         }
       }
 
-      console.log(data)
-      return false
+      console.log(data);
+      return false;
+    } catch (err) {
+      console.log(err);
     }
-    catch (err) {
-      console.log(err)
-    }
-  }
+  };
 
   const enableWallet = async () => {
     try {
@@ -68,12 +76,13 @@ export default function ConnectWallet() {
         .getBech32();
       console.log(changeAddress);
 
-      const hasEladr = await hasEladrBalance(changeAddress)
+      const hasEladr = await hasEladrBalance(changeAddress);
       if (!hasEladr) {
-        const message = 'Wallet doesn\'t have Eduladder Tokens. Please purchase some tokens or try a different wallet.'
-        alert(message)
-        console.log(message)
-        return
+        const message =
+          "Wallet doesn't have Eduladder Tokens. Please purchase some tokens or try a different wallet.";
+        alert(message);
+        console.log(message);
+        return;
       }
 
       if (changeAddress) {
@@ -84,7 +93,7 @@ export default function ConnectWallet() {
         Cookies.set("user", JSON.stringify({ wallet_address: changeAddress }));
         navigate("/");
       }
-      console.log('Wallet connection success!!')
+      console.log("Wallet connection success!!");
     } catch (err) {
       console.log(err);
     }
@@ -118,7 +127,6 @@ export default function ConnectWallet() {
       <button
         className="connect_wallet"
         onClick={() => {
-          detectWallets();
           wallets.length !== 0 ? enableWallet() : detectWallets();
         }}
       >

@@ -12,4 +12,7 @@ a {
   font-size: 4rem;
   padding: 5rem;
   border-radius: 70px;
+  border: none;
+  background-color: red;
+  color: white;
 }

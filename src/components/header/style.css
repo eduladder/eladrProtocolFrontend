@@ -68,3 +68,8 @@
 .search_result_box_item:hover {
   background-color: lightgray;
 }
+
+.eladr_price {
+  display: flex;
+  align-items: center;
+}
