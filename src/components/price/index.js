@@ -36,7 +36,6 @@ export default function Price() {
       await fetchPrice();
     }
     loadData();
-    console.log(eladInr);
   }, []);
 
   return (

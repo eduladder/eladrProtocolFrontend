@@ -44,7 +44,6 @@ export default function Header({ searchedTerm, seachedResults }) {
       await fetchPrice();
     }
     loadData();
-    console.log(eladInr);
   }, []);
 
   const disconnect = () => {

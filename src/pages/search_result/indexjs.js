@@ -40,7 +40,6 @@ export default function SearchResults() {
 
   return (
     <div className="searchResults">
-      {console.log("searched--->", searchedResults)}
       <Header searchedTerm={searchTerm} seachedResults={results} />
       <div className="results_feed">
         {searchedResults && searchedResults.length !== 0 ? (

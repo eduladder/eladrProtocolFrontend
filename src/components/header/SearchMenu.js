@@ -11,7 +11,7 @@ export default function SearchMenu({ searchedTerm, seachedResults }) {
 
   const navigate = useNavigate();
   const results_box = useRef();
-  console.log(searchedTerm, seachedResults);
+
   useEffect(() => {
     searchedTerm && setSearchTerm(searchedTerm);
     setResults(seachedResults);
@@ -31,7 +31,6 @@ export default function SearchMenu({ searchedTerm, seachedResults }) {
 
   const search = async () => {
     try {
-      console.log("Hello");
       if (searchTerm === "" || searchTerm === []) {
         setResults("");
       } else {
@@ -72,7 +71,6 @@ export default function SearchMenu({ searchedTerm, seachedResults }) {
             setSearchTerm(e.target.value);
           }}
         />
-        {console.log("Header Results-->", results, showResults)}
         {showResults && results && results.length !== 0 && (
           <div className="search_result_box">
             {results.map((result, i) => (
