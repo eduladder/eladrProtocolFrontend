@@ -18,7 +18,6 @@ export default function ViewFeed() {
   const [postedBy, setPostedBy] = useState("");
   const [fileType, setFileType] = useState("");
   const { metaHash } = useParams();
-  console.log(metaHash);
   const axiosConfig = {
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +27,6 @@ export default function ViewFeed() {
   axios
     .get(`${process.env.REACT_APP_BACKEND_URL}/meta/${metaHash}`, axiosConfig)
     .then((response) => {
-      console.log("response-->", response);
       const { name, description, wallet, fileHash, fileType } = response.data;
       setTitle(name);
       setDescription(description);

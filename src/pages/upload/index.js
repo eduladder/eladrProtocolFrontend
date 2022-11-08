@@ -7,26 +7,37 @@ import { faFileAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Footer from "../../components/footer";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Upload() {
   const [file, setFile] = useState(null);
-
+  const [thumbnail, setThumbnail] = useState(null);
   const [status, setStatus] = useState("No File Chosen");
   const title = useRef(null);
   const description = useRef(null);
   const { user } = useSelector((state) => ({ ...state }));
-  console.log("user-->", user);
+  
+  const navigate = useNavigate();
 
   const handleFile = (e) => {
     setFile(e.target.files.item(0));
     setStatus("File selected");
-    console.log(file);
   };
+
+  const handleThumbnail = (e) => {
+    setThumbnail(e.target.files.item(0));
+    setStatus("Thumbnail selected")
+  };
+
   const deleteFile = () => {
     setFile(null);
     setStatus("No File Chosen");
-    console.log(file);
   };
+
+  const deleteThumbnail = () => {
+    setThumbnail(null);
+    setStatus("No Thumbnail Chosen");
+  }
 
   const uploadFile = async () => {
     try {
@@ -62,6 +73,24 @@ export default function Upload() {
         const fileType = data.fileType;
         console.log(`IPFS hash of uploaded file: ${fileHash}`);
 
+        let thumbHash
+
+        if (thumbnail) {
+          const thumbForm = new FormData();
+          thumbForm.append("file", thumbnail);
+          let {data} = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/file`,
+          thumbForm,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            mode: "cors",
+          }
+          )
+          thumbHash = data.fileHash
+        }
+
         setStatus("Uploading metadata...");
         ({ data } = await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/meta`,
@@ -71,6 +100,7 @@ export default function Upload() {
             wallet: user.wallet_address,
             fileHash: fileHash,
             fileType: fileType,
+            thumbnailHash: thumbHash
           },
           {
             headers: {
@@ -88,6 +118,7 @@ export default function Upload() {
           wallet: "addr1_dummy",
           title: currentTitle,
           description: currentDesc,
+          hashThumbnail: thumbHash
         };
         const response3 = await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/database`,
@@ -101,8 +132,13 @@ export default function Upload() {
         console.log(response3);
         setStatus("Upload Complete.");
         setFile(null);
+        setThumbnail(null)
         title.current.value = null;
         description.current.value = null;
+
+        setTimeout(() => {
+          navigate('/')
+        }, 2000)
       }
     } catch (err) {
       console.log(err);
@@ -133,7 +169,7 @@ export default function Upload() {
         ></textarea>
         <div className="upload_file">
           <div className="title">Choose File</div>
-          <div className="file_card">
+          <div className="file_card" style={{marginBottom: "15px"}}>
             {file ? (
               <div className="file_box">
                 <FontAwesomeIcon icon={faFileAlt} />
@@ -156,8 +192,39 @@ export default function Upload() {
                 </button>
               </div>
             )}
-          </div>
+          </div>          
         </div>
+
+        <div className="upload_file">
+          <div className="title">Choose Thumbnail<br/>(Optional) </div>
+          <div className="file_card">
+            
+            {thumbnail ? (
+              <div className="file_box">
+                <FontAwesomeIcon icon={faFileAlt} />
+                <p>{thumbnail.name}</p>
+                <div className="actions">
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    onClick={() => deleteThumbnail()}
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="file_inputs">
+                <input type="file" accept="image/jpeg, image/png, image/webp, image/gif, image/jpg" onChange={handleThumbnail} />
+                <button>
+                  <i>
+                    <FontAwesomeIcon icon={faPlus} />
+                  </i>
+                  Add Thumbnail
+                </button>
+              </div>
+            )}
+          </div>          
+        </div>
+
+        
 
         <button className="upload_btn" onClick={uploadFile}>
           Upload
