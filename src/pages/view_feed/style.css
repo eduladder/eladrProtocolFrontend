@@ -1,8 +1,11 @@
 .view_feed_container {
   display: flex;
-  margin-top: 300px;
+  margin-top: 172px;
+  gap: 10px;
   justify-content: space-around;
   position: relative;
+  flex-direction: column;
+    align-items: center;
 }
 .details {
   align-self: center;
