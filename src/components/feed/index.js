@@ -20,8 +20,8 @@ export default function Feed({ feed, home }) {
     <Link to={`/${feed.hashmeta}`}>
       <div className="feed">
         <div className="feed_header">
-          <div className="feed_title">{feed.title}</div>
-          <div className="feed_description">{feed.description}</div>
+          <div className="feed_title">{feed.title.toString().length > 30 ? `${feed.title.toString().slice(0, 31)}.....` : feed.title}</div>
+          <div className="feed_description">{feed.description.toString().length > 30 ? `${feed.description.toString().slice(0, 31)}.....` : feed.description}</div>
         </div>
         {home && 
         (fileType === 'image' && (feed.hashthumbnail ? <div className="feed_bg" style={{backgroundImage: `url(https://gateway.ipfs.io/ipfs/${feed?.hashthumbnail})`}}></div> : 

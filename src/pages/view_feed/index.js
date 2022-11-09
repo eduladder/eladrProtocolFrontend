@@ -17,6 +17,7 @@ export default function ViewFeed() {
   const [description, setDescription] = useState("");
   const [postedBy, setPostedBy] = useState("");
   const [fileType, setFileType] = useState("");
+  const [copyButton, setCopyButton] = useState("Copy");
   const { metaHash } = useParams();
   const axiosConfig = {
     headers: {
@@ -35,6 +36,11 @@ export default function ViewFeed() {
       setFileType(fileType.split("/")[0]);
     });
 
+    const copyAddress = () => {
+      navigator.clipboard.writeText(postedBy)
+      setCopyButton("Copied")
+    }
+
   const downloadFile = () => {
     saveAs(`${ipfsGateway}${contentHash}`, contentHash);
   };
@@ -43,7 +49,7 @@ export default function ViewFeed() {
       <Header />
       <div className="view_feed_container">
         <div className="content">
-        <h1>Title: {title}</h1>
+        <h1>{title}</h1>
           <br />
           {fileType === "image" && (
             <>
@@ -88,12 +94,15 @@ export default function ViewFeed() {
         </div>
         <div className="details">
           
-          <h3>Description: {description}</h3>
+          <h3>{description}</h3>
           <br />
-          <h3 style={{display: "inline-block"}}>Uploaded By:</h3> <a className="address_link" href={`https://cardanoscan.io/address/${postedBy}`} title="watch address on cardanoscan" target="_blank" rel="noopener noreferrer" >{`${postedBy.slice(0, 9)}......${postedBy.slice(-9)}`}</a>
+          <h3 style={{display: "inline-block"}}>By:</h3> 
+          <div className="address">
+          {`${postedBy.slice(0, 9)}......${postedBy.slice(-9)}`}&nbsp;&nbsp;&nbsp;
+          <button className="copy_address" onClick={copyAddress}>{copyButton}</button>
+          </div>
           <br />
           <br />
-          <h3>File Type: {fileType}</h3>
           <Link to={`/report/${metaHash}`} className="report_link">
             Report
           </Link>

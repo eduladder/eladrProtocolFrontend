@@ -85,8 +85,8 @@ export default function SearchMenu({ searchedTerm, seachedResults }) {
               >
                 {!result.title.includes(searchTerm) &&
                 result.description.includes(searchTerm)
-                  ? result.description
-                  : result.title}
+                  ? (result.description.toString().length > 16 ? `${result.description.toString().slice(0, 17)}...` : result.desciption)
+                  : (result.title.toString().length > 16 ? `${result.title.toString().slice(0, 17)}...` : result.title)}
               </Link>
             ))}
           </div>
