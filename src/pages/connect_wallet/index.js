@@ -27,7 +27,6 @@ export default function ConnectWallet() {
       const message =
         "Please install a Cardano wallet extension like Nami, Eternl or Yoroi on your browser, before using this application.";
       alert(message);
-      console.log(message);
       return;
     }
     const wlet = [];
@@ -59,7 +58,6 @@ export default function ConnectWallet() {
         }
       }
 
-      console.log(data);
       return false;
     } catch (err) {
       console.log(err);
@@ -75,14 +73,12 @@ export default function ConnectWallet() {
       const changeAddress = utils
         .getAddressFromHex(rawAddress.toString())
         .getBech32();
-      console.log(changeAddress);
 
       const hasEladr = await hasEladrBalance(changeAddress);
       if (!hasEladr) {
         const message =
           "Wallet doesn't have Eduladder Tokens. Please purchase some tokens or try a different wallet.";
         alert(message);
-        console.log(message);
         return;
       }
 
@@ -102,7 +98,6 @@ export default function ConnectWallet() {
 
   useEffect(() => {
     detectWallets();
-    console.log("hello");
   }, []);
 
   return (

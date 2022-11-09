@@ -18,7 +18,6 @@ export default function ViewFeed() {
   const [postedBy, setPostedBy] = useState("");
   const [fileType, setFileType] = useState("");
   const { metaHash } = useParams();
-  console.log(metaHash);
   const axiosConfig = {
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +27,6 @@ export default function ViewFeed() {
   axios
     .get(`${process.env.REACT_APP_BACKEND_URL}/meta/${metaHash}`, axiosConfig)
     .then((response) => {
-      console.log("response-->", response);
       const { name, description, wallet, fileHash, fileType } = response.data;
       setTitle(name);
       setDescription(description);
@@ -45,6 +43,8 @@ export default function ViewFeed() {
       <Header />
       <div className="view_feed_container">
         <div className="content">
+        <h1>Title: {title}</h1>
+          <br />
           {fileType === "image" && (
             <>
               <a
@@ -87,11 +87,10 @@ export default function ViewFeed() {
             )}
         </div>
         <div className="details">
-          <h3>Title: {title}</h3>
-          <br />
+          
           <h3>Description: {description}</h3>
           <br />
-          <h3>Uploaded By:</h3> <a className="address_link" href={`https://cardanoscan.io/address/${postedBy}`} title="watch address on cardanoscan" target="_blank" rel="noopener noreferrer" >{`${postedBy.slice(0, 9)}......${postedBy.slice(-9)}`}</a>
+          <h3 style={{display: "inline-block"}}>Uploaded By:</h3> <a className="address_link" href={`https://cardanoscan.io/address/${postedBy}`} title="watch address on cardanoscan" target="_blank" rel="noopener noreferrer" >{`${postedBy.slice(0, 9)}......${postedBy.slice(-9)}`}</a>
           <br />
           <br />
           <h3>File Type: {fileType}</h3>
