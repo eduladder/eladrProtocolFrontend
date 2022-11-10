@@ -16,7 +16,7 @@ export default function Upload() {
   const title = useRef(null);
   const description = useRef(null);
   const { user } = useSelector((state) => ({ ...state }));
-  
+
   const navigate = useNavigate();
 
   const handleFile = (e) => {
@@ -26,7 +26,7 @@ export default function Upload() {
 
   const handleThumbnail = (e) => {
     setThumbnail(e.target.files.item(0));
-    setStatus("Thumbnail selected")
+    setStatus("Thumbnail selected");
   };
 
   const deleteFile = () => {
@@ -37,7 +37,7 @@ export default function Upload() {
   const deleteThumbnail = () => {
     setThumbnail(null);
     setStatus("No Thumbnail Chosen");
-  }
+  };
 
   const uploadFile = async () => {
     try {
@@ -73,22 +73,22 @@ export default function Upload() {
         const fileType = data.fileType;
         console.log(`IPFS hash of uploaded file: ${fileHash}`);
 
-        let thumbHash
+        let thumbHash;
 
         if (thumbnail) {
           const thumbForm = new FormData();
           thumbForm.append("file", thumbnail);
-          let {data} = await axios.post(
+          let { data } = await axios.post(
             `${process.env.REACT_APP_BACKEND_URL}/file`,
-          thumbForm,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-            mode: "cors",
-          }
-          )
-          thumbHash = data.fileHash
+            thumbForm,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+              mode: "cors",
+            }
+          );
+          thumbHash = data.fileHash;
         }
 
         setStatus("Uploading metadata...");
@@ -100,7 +100,7 @@ export default function Upload() {
             wallet: user.wallet_address,
             fileHash: fileHash,
             fileType: fileType,
-            thumbnailHash: thumbHash
+            thumbnailHash: thumbHash,
           },
           {
             headers: {
@@ -118,7 +118,7 @@ export default function Upload() {
           wallet: "addr1_dummy",
           title: currentTitle,
           description: currentDesc,
-          hashThumbnail: thumbHash
+          hashThumbnail: thumbHash,
         };
         const response3 = await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/database`,
@@ -132,13 +132,11 @@ export default function Upload() {
         console.log(response3);
         setStatus("Upload Complete.");
         setFile(null);
-        setThumbnail(null)
+        setThumbnail(null);
         title.current.value = null;
         description.current.value = null;
 
-        setTimeout(() => {
-          navigate('/')
-        }, 2000)
+        navigate("/");
       }
     } catch (err) {
       console.log(err);
@@ -161,77 +159,86 @@ export default function Upload() {
         <textarea
           id="description"
           name="description"
-          rows="5"
+          rows="3"
           cols="100"
           placeholder="Description"
           ref={description}
           className="description_input"
         ></textarea>
-        <div className="upload_file">
-          <div className="title">Choose File</div>
-          <div className="file_card" style={{marginBottom: "15px"}}>
-            {file ? (
-              <div className="file_box">
-                <FontAwesomeIcon icon={faFileAlt} />
-                <p>{file.name}</p>
-                <div className="actions">
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    onClick={() => deleteFile()}
-                  />
-                </div>
-              </div>
-            ) : (
-              <div className="file_inputs">
-                <input type="file" onChange={handleFile} />
-                <button>
-                  <i>
-                    <FontAwesomeIcon icon={faPlus} />
-                  </i>
-                  Add File
-                </button>
-              </div>
-            )}
-          </div>          
-        </div>
+        <div className="upload_file_container">
+          <div className="upload_file">
+            <div className="title" style={{ marginTop: "21px" }}>
+              Choose File
+            </div>
 
-        <div className="upload_file">
-          <div className="title">Choose Thumbnail<br/>(Optional) </div>
-          <div className="file_card">
-            
-            {thumbnail ? (
-              <div className="file_box">
-                <FontAwesomeIcon icon={faFileAlt} />
-                <p>{thumbnail.name}</p>
-                <div className="actions">
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    onClick={() => deleteThumbnail()}
-                  />
+            <div className="file_card">
+              {file ? (
+                <div className="file_box">
+                  <FontAwesomeIcon icon={faFileAlt} />
+                  <p>{file.name}</p>
+                  <div className="actions">
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      onClick={() => deleteFile()}
+                    />
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className="file_inputs">
-                <input type="file" accept="image/jpeg, image/png, image/webp, image/gif, image/jpg" onChange={handleThumbnail} />
-                <button>
-                  <i>
-                    <FontAwesomeIcon icon={faPlus} />
-                  </i>
-                  Add Thumbnail
-                </button>
-              </div>
-            )}
-          </div>          
-        </div>
+              ) : (
+                <div className="file_inputs">
+                  <input type="file" onChange={handleFile} />
+                  <button>
+                    <i>
+                      <FontAwesomeIcon icon={faPlus} />
+                    </i>
+                    Add File
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
 
-        
+          <div className="upload_file">
+            <div className="title">
+              Choose Thumbnail
+              <br />
+              (Optional)
+            </div>
+            <div className="file_card">
+              {thumbnail ? (
+                <div className="file_box">
+                  <FontAwesomeIcon icon={faFileAlt} />
+                  <p>{thumbnail.name}</p>
+                  <div className="actions">
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      onClick={() => deleteThumbnail()}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="file_inputs">
+                  <input
+                    type="file"
+                    accept="image/jpeg, image/png, image/webp, image/gif, image/jpg"
+                    onChange={handleThumbnail}
+                  />
+                  <button>
+                    <i>
+                      <FontAwesomeIcon icon={faPlus} />
+                    </i>
+                    Add Thumbnail
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
 
         <button className="upload_btn" onClick={uploadFile}>
           Upload
         </button>
-        <br />
-        <br />
-        <div>
+
+        <div className="status">
           <p>Upload status: {status}</p>
         </div>
       </div>

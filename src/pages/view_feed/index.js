@@ -36,10 +36,10 @@ export default function ViewFeed() {
       setFileType(fileType.split("/")[0]);
     });
 
-    const copyAddress = () => {
-      navigator.clipboard.writeText(postedBy)
-      setCopyButton("Copied")
-    }
+  const copyAddress = () => {
+    navigator.clipboard.writeText(postedBy);
+    setCopyButton("Copied");
+  };
 
   const downloadFile = () => {
     saveAs(`${ipfsGateway}${contentHash}`, contentHash);
@@ -48,9 +48,8 @@ export default function ViewFeed() {
     <div className="view_feed">
       <Header />
       <div className="view_feed_container">
+        <div className="conent_title">{title}</div>
         <div className="content">
-        <h1>{title}</h1>
-          <br />
           {fileType === "image" && (
             <>
               <a
@@ -68,12 +67,7 @@ export default function ViewFeed() {
           )}
           {fileType === "video" && (
             <>
-              <video
-                controls
-                src={`${ipfsGateway}${contentHash}`}
-                height="500px"
-                width="600px"
-              />
+              <video controls src={`${ipfsGateway}${contentHash}`} />
             </>
           )}
           {fileType === "audio" && (
@@ -93,16 +87,19 @@ export default function ViewFeed() {
             )}
         </div>
         <div className="details">
-          
           <h3>{description}</h3>
           <br />
-          <h3 style={{display: "inline-block"}}>By:</h3> 
-          <div className="address">
-          {`${postedBy.slice(0, 9)}......${postedBy.slice(-9)}`}&nbsp;&nbsp;&nbsp;
-          <button className="copy_address" onClick={copyAddress}>{copyButton}</button>
+          <div className="address_container">
+            <h3>By:</h3>
+            <div className="address" style={{ display: "inline-block" }}>
+              {`${postedBy.slice(0, 9)}......${postedBy.slice(-9)}`}
+              &nbsp;&nbsp;&nbsp;
+              <button className="copy_address" onClick={copyAddress}>
+                {copyButton}
+              </button>
+            </div>
           </div>
-          <br />
-          <br />
+
           <Link to={`/report/${metaHash}`} className="report_link">
             Report
           </Link>

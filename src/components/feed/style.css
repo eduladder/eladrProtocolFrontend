@@ -13,9 +13,14 @@
 }
 .feed_header {
   padding: 10px 25px;
+  padding: 10px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .feed_title {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+  font-weight: 600;
 }
 .feed_description {
   font-size: 1.2rem;
