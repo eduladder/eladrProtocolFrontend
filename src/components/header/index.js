@@ -53,11 +53,14 @@ export default function Header({ searchedTerm, seachedResults }) {
   };
   return (
     <div className="header">
-      <img
+      <Link to={"/"}>
+        <img
           src="https://eduladder.com/images/app/edu.png"
           width="170"
           height="100"
         />
+      </Link>
+
       <SearchMenu searchedTerm={searchedTerm} seachedResults={seachedResults} />
       <Link to={"/"}>
         <div className="nav_btn">Home</div>

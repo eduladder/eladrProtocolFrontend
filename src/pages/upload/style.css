@@ -21,29 +21,34 @@
   color: #000;
   font-family: inherit;
   font-size: 30px;
+  width: 60%;
   margin-bottom: 2.5rem;
   margin-left: 1px;
   outline: none;
   padding: 24px 30px;
   position: relative;
   resize: none;
-  width: 60%;
   border: none;
   border-radius: 1rem;
   background-color: lightgray;
 }
 
+.upload_file_container {
+  display: flex;
+  gap: 305px;
+}
+
 .upload_file {
   display: flex;
-  width: 60%;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  gap: 15px;
 }
 
 .title {
   font-weight: bold;
   font-size: 3.2rem;
-  margin-bottom: 1em;
   color: grey;
 }
 
@@ -123,13 +128,17 @@
   cursor: pointer;
 }
 
+.status {
+  padding: 10px;
+}
+
 .upload_btn {
   border: none;
   border-radius: 6px;
   background-color: #f55321;
   cursor: pointer;
   font-weight: 600;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   padding: 1.25rem 7rem;
   font-size: 2rem;
   color: #fff;
