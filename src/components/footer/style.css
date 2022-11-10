@@ -5,10 +5,9 @@
   display: flex;
   font-size: 1rem;
   font-weight: 600;
-  left: 50%;
-  transform: translate(-50%);
+  justify-content: center;
 }
 
 div .footer_item {
-  padding: 1.5rem;
+  padding: 2rem;
 }

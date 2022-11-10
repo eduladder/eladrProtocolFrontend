@@ -6,11 +6,17 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Price from "../price";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header({ searchedTerm, seachedResults }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [eladInr, setEladrInr] = useState(0);
+  const [showMenu, setShowMenu] = useState(false);
+  const [showSearch, setShowSearch] = useState(true);
 
   const customConfig = {
     headers: {
@@ -52,8 +58,19 @@ export default function Header({ searchedTerm, seachedResults }) {
     navigate("/connect_wallet");
   };
   return (
-    <div className="header">
-      <Link to={"/"}>
+    <div className={`header ${showMenu ? "active_menu" : ""}`}>
+      {showMenu && <div className="menu"></div>}
+
+      <div
+        className="menu_icon"
+        onClick={() => {
+          setShowMenu(true);
+        }}
+      >
+        <FontAwesomeIcon icon={faBars} size="3x" />
+      </div>
+
+      <Link to={"/"} className="full_logo">
         <img
           src="https://eduladder.com/images/app/edu.png"
           width="170"
@@ -61,19 +78,46 @@ export default function Header({ searchedTerm, seachedResults }) {
         />
       </Link>
 
-      <SearchMenu searchedTerm={searchedTerm} seachedResults={seachedResults} />
+      <SearchMenu
+        searchedTerm={searchedTerm}
+        seachedResults={seachedResults}
+        showSearch={showSearch}
+        setShowSearch={setShowSearch}
+      />
       <Link to={"/"}>
-        <div className="nav_btn">Home</div>
+        <div className={`nav_btn ${showMenu ? "show" : ""}`}>Home</div>
       </Link>
       <Link to={"/upload"}>
-        <div className="nav_btn">Upload</div>
+        <div className={`nav_btn ${showMenu ? "show" : ""}`}>Upload</div>
       </Link>
 
-      <button className="disconnect_btn" onClick={disconnect}>
+      <button
+        className={`disconnect_btn ${showMenu ? "show" : ""}`}
+        onClick={disconnect}
+      >
         Disconnect
       </button>
-
-      <Price />
+      <Price show={showMenu} />
+      <div
+        className="search_icon_btn"
+        onClick={() => {
+          setShowSearch(true);
+        }}
+      >
+        <FontAwesomeIcon
+          icon={faMagnifyingGlass}
+          size="3x"
+          className="search_icon"
+        />
+      </div>
+      <div
+        className={`close_btn ${showMenu ? "show" : ""}`}
+        onClick={() => {
+          setShowMenu(false);
+        }}
+      >
+        <FontAwesomeIcon icon={faXmark} size="4x" />
+      </div>
     </div>
   );
 }

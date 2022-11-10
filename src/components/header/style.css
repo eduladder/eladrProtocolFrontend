@@ -9,6 +9,15 @@
   background-color: white;
   box-shadow: 0px 1px 15px rgb(0 0 0 / 15%);
 }
+.menu_icon {
+  display: none;
+}
+.full_logo {
+  z-index: -1;
+}
+.flex {
+  align-self: center;
+}
 
 .search input {
   outline: none;
@@ -56,7 +65,7 @@
   padding: 10px;
   border-radius: 7px;
   position: absolute;
-  top: 73px;
+  top: 83px;
 }
 
 .search_result_box::-webkit-scrollbar {
@@ -78,3 +87,128 @@
   display: flex;
   align-items: center;
 }
+
+.search_btn {
+  transform: translate(-45px, 2px);
+  padding: 7.5px;
+  border: none;
+  background-color: transparent;
+}
+.search_icon {
+  border: none;
+  font-size: 27px;
+}
+.search_icon_btn {
+  display: none;
+}
+.close_btn {
+  display: none;
+}
+.close_input_btn {
+  display: none;
+}
+
+/* ------------------Media Queries--------------------- */
+@media (max-width: 1000px) {
+  .full_logo {
+    margin-left: 10em;
+  }
+
+  .menu_icon {
+    display: block;
+  }
+  .nav_btn,
+  .disconnect_btn,
+  .price {
+    display: none;
+  }
+  .search {
+    display: none;
+  }
+
+  .search_icon_btn {
+    display: block;
+  }
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: grey;
+  }
+  .show {
+    display: block;
+    z-index: 99;
+  }
+  .active_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+  .active_menu .nav_btn,
+  .active_menu .disconnect_btn {
+    display: block;
+    font-size: 3rem;
+    align-self: center;
+    z-index: 99;
+  }
+  .active_menu .nav_btn {
+    transform: translateX(0%);
+  }
+  .close_btn {
+    display: none;
+    z-index: 99;
+  }
+  .active_menu .close_btn {
+    display: block;
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+  }
+  .show_price {
+    display: block;
+    position: absolute;
+    top: 16%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 2rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
+  }
+
+  .responsive_search {
+    position: absolute;
+    top: 0;
+    height: 105px;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .responsive_search input {
+    width: 90vw;
+    height: 60%;
+    border: none;
+    font-size: 2rem;
+    outline: none;
+    padding: 0px 56px 0px 17px;
+    background-color: white;
+  }
+  .responsive_search .search_result_box {
+    width: 96%;
+  }
+  .close_input_btn {
+    display: inline-block;
+    cursor: pointer;
+    position: absolute;
+    top: 31px;
+    right: 2.5%;
+    font-size: 13px;
+    padding: 5px;
+  }
+}
+
+/* ------------------Media Queries--------------------- */
