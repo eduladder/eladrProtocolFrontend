@@ -15,6 +15,14 @@
   color: rgb(0, 119, 255);
 }
 
+.copy_address {
+  color: black;
+  background-color: rgb(87, 206, 117);
+  border-radius: 8px;
+  height: 25px;
+  width: 50px;
+}
+
 .report_link {
   position: absolute;
   font-size: 1.2rem;
