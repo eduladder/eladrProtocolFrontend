@@ -8,6 +8,7 @@ import axios from "axios";
 import Footer from "../../components/footer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Upload() {
   const [file, setFile] = useState(null);
@@ -16,8 +17,26 @@ export default function Upload() {
   const title = useRef(null);
   const description = useRef(null);
   const { user } = useSelector((state) => ({ ...state }));
-
   const navigate = useNavigate();
+  const container = useRef();
+  const [spaceLeft, setSpaceLeft] = useState();
+
+  useEffect(() => {
+    function handleWindowResize() {
+      setSpaceLeft(window.innerHeight - (container.current.clientHeight + 128));
+    }
+    setSpaceLeft(window.innerHeight - (container.current.clientHeight + 128));
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+  function getWindowSize() {
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth, innerHeight };
+  }
 
   const handleFile = (e) => {
     setFile(e.target.files.item(0));
@@ -148,101 +167,93 @@ export default function Upload() {
   return (
     <div className="upload">
       <Header />
-      <div className="upload_container">
+      <div className="upload_container" ref={container}>
         <input
           type="text"
           placeholder="Title"
           className="title_box"
           ref={title}
         />
+        <div className="description_input">
+          <textarea
+            id="description"
+            name="description"
+            rows="3"
+            cols="100"
+            placeholder="Description"
+            ref={description}
+          ></textarea>
+        </div>
 
-        <textarea
-          id="description"
-          name="description"
-          rows="3"
-          cols="100"
-          placeholder="Description"
-          ref={description}
-          className="description_input"
-        ></textarea>
         <div className="upload_file_container">
           <div className="upload_file">
             <div className="title" style={{ marginTop: "21px" }}>
               Choose File
             </div>
 
-            <div className="file_card">
-              {file ? (
-                <div className="file_box">
-                  <FontAwesomeIcon icon={faFileAlt} />
-                  <p>{file.name}</p>
-                  <div className="actions">
-                    <FontAwesomeIcon
-                      icon={faTrash}
-                      onClick={() => deleteFile()}
-                    />
-                  </div>
+            {file ? (
+              <div className="file_box">
+                <FontAwesomeIcon icon={faFileAlt} />
+                <p>{file.name}</p>
+                <div className="actions">
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    onClick={() => deleteFile()}
+                  />
                 </div>
-              ) : (
-                <div className="file_inputs">
-                  <input type="file" onChange={handleFile} />
-                  <button>
-                    <i>
-                      <FontAwesomeIcon icon={faPlus} />
-                    </i>
-                    Add File
-                  </button>
-                </div>
-              )}
-            </div>
+              </div>
+            ) : (
+              <div className="file_inputs">
+                <input type="file" onChange={handleFile} />
+                <button>
+                  <i>
+                    <FontAwesomeIcon icon={faPlus} />
+                  </i>
+                  Add File
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="upload_file">
-            <div className="title">
-              Choose Thumbnail
-              <br />
-              (Optional)
-            </div>
-            <div className="file_card">
-              {thumbnail ? (
-                <div className="file_box">
-                  <FontAwesomeIcon icon={faFileAlt} />
-                  <p>{thumbnail.name}</p>
-                  <div className="actions">
-                    <FontAwesomeIcon
-                      icon={faTrash}
-                      onClick={() => deleteThumbnail()}
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div className="file_inputs">
-                  <input
-                    type="file"
-                    accept="image/jpeg, image/png, image/webp, image/gif, image/jpg"
-                    onChange={handleThumbnail}
+            <div className="title">Choose Thumbnail (Optional)</div>
+
+            {thumbnail ? (
+              <div className="file_box">
+                <FontAwesomeIcon icon={faFileAlt} />
+                <p>{thumbnail.name}</p>
+                <div className="actions">
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    onClick={() => deleteThumbnail()}
                   />
-                  <button>
-                    <i>
-                      <FontAwesomeIcon icon={faPlus} />
-                    </i>
-                    Add Thumbnail
-                  </button>
                 </div>
-              )}
-            </div>
+              </div>
+            ) : (
+              <div className="file_inputs">
+                <input
+                  type="file"
+                  accept="image/jpeg, image/png, image/webp, image/gif, image/jpg"
+                  onChange={handleThumbnail}
+                />
+                <button>
+                  <i>
+                    <FontAwesomeIcon icon={faPlus} />
+                  </i>
+                  Add Thumbnail
+                </button>
+              </div>
+            )}
           </div>
         </div>
-
         <button className="upload_btn" onClick={uploadFile}>
           Upload
         </button>
-
         <div className="status">
           <p>Upload status: {status}</p>
         </div>
       </div>
-      <Footer />
+      {spaceLeft < 85 ? <Footer scrollable /> : <Footer />}
     </div>
   );
 }

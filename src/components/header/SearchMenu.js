@@ -3,11 +3,18 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import useClickOutside from "../../helpers/clickOutside";
 import { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-export default function SearchMenu({ searchedTerm, seachedResults }) {
+export default function SearchMenu({
+  searchedTerm,
+  seachedResults,
+  showSearch,
+  setShowSearch,
+}) {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
-  const [showResults, setShowResults] = useState(true);
+  const [showResults, setShowResults] = useState(false);
 
   const navigate = useNavigate();
   const results_box = useRef();
@@ -54,48 +61,74 @@ export default function SearchMenu({ searchedTerm, seachedResults }) {
   };
 
   return (
-    <div className="search">
-      <div className="input_and_result_wrap" ref={results_box}>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onFocus={() => {
-            setShowResults(true);
-          }}
-          onClick={() => {
-            setShowResults(true);
-          }}
-          onKeyUp={search}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-          }}
-        />
-        {showResults && results && results.length !== 0 && (
-          <div className="search_result_box">
-            {results.map((result, i) => (
-              <Link
-                to={`/${result.hashmeta}`}
-                className="search_result_box_item"
-                key={i}
-                onClick={() => {
-                  setResults("");
-                  setSearchTerm("");
-                }}
-              >
-                {!result.title.includes(searchTerm) &&
-                result.description.includes(searchTerm)
-                  ? (result.description.toString().length > 16 ? `${result.description.toString().slice(0, 17)}...` : result.desciption)
-                  : (result.title.toString().length > 16 ? `${result.title.toString().slice(0, 17)}...` : result.title)}
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
-
-      <button className="nav_btn" onClick={goToSearchResultsPage}>
-        Search
-      </button>
+    <div className={`search ${showSearch ? "responsive_search" : ""}`}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          goToSearchResultsPage();
+        }}
+      >
+        <div className="input_and_result_wrap" ref={results_box}>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onFocus={() => {
+              setShowResults(true);
+            }}
+            onClick={() => {
+              setShowResults(true);
+            }}
+            onKeyUp={search}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+          />
+          <button type="submit" className="search_btn">
+            <i>
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                size="2x"
+                className="search_icon"
+              />
+            </i>
+          </button>
+          {showSearch && (
+            <div
+              className="close_input_btn"
+              onClick={() => {
+                setShowSearch(false);
+              }}
+            >
+              <FontAwesomeIcon icon={faXmark} size="3x" />
+            </div>
+          )}
+          {showResults && results && results.length !== 0 && (
+            <div className="search_result_box">
+              {results.map((result, i) => (
+                <Link
+                  to={`/${result.hashmeta}`}
+                  className="search_result_box_item"
+                  key={i}
+                  onClick={() => {
+                    setResults("");
+                    setSearchTerm("");
+                  }}
+                >
+                  {!result.title.includes(searchTerm) &&
+                  result.description.includes(searchTerm)
+                    ? result.description.toString().length > 16
+                      ? `${result.description.toString().slice(0, 17)}...`
+                      : result.desciption
+                    : result.title.toString().length > 16
+                    ? `${result.title.toString().slice(0, 17)}...`
+                    : result.title}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </form>
     </div>
   );
 }

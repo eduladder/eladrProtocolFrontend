@@ -1,13 +1,13 @@
 .report_container {
   display: flex;
-  height: 100vh;
+
   align-items: center;
   flex-direction: column;
-  padding-top: 11rem;
+  margin-top: 124px;
 }
 
 .report_title {
-  font-size: 3.5rem;
+  font-size: 3rem;
 }
 .report_reason {
   color: #000;
@@ -30,8 +30,16 @@
   background-color: #f55321;
   cursor: pointer;
   font-weight: 600;
-  margin-top: 2rem;
   padding: 1.25rem 7rem;
   font-size: 2rem;
   color: #fff;
+  margin-bottom: 2rem;
 }
+/* ---------------Media-Queries----------------- */
+@media (max-width: 1000px) {
+  .report_title {
+    width: 60vw;
+  }
+}
+
+/* ---------------Media-Queries----------------- */

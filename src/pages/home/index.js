@@ -4,6 +4,7 @@ import { postsReducer } from "../../reducers/reducers";
 import Header from "../../components/header";
 import Feed from "../../components/feed";
 import "./style.css";
+import Footer from "../../components/footer";
 
 export default function Home() {
   const [{ loading, error, feeds }, dispatch] = useReducer(postsReducer, {
@@ -39,6 +40,7 @@ export default function Home() {
           feeds.reverse().map((feed, i) => <Feed feed={feed} key={i} home />)
         )}
       </div>
+      {!loading && <Footer scrollable />}
     </div>
   );
 }

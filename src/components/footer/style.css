@@ -5,10 +5,17 @@
   display: flex;
   font-size: 1rem;
   font-weight: 600;
+  justify-content: center;
+}
+
+.scrollable {
+  position: relative;
+}
+.fixed {
   left: 50%;
-  transform: translate(-50%);
+  transform: translateX(-50%);
 }
 
 div .footer_item {
-  padding: 1.5rem;
+  padding: 2rem;
 }

@@ -75,12 +75,12 @@ export default function ConnectWallet() {
         .getBech32();
 
       const hasEladr = await hasEladrBalance(changeAddress);
-      if (!hasEladr) {
-        const message =
-          "Wallet doesn't have Eduladder Tokens. Please purchase some tokens or try a different wallet.";
-        alert(message);
-        return;
-      }
+      // if (!hasEladr) {
+      //   const message =
+      //     "Wallet doesn't have Eduladder Tokens. Please purchase some tokens or try a different wallet.";
+      //   alert(message);
+      //   return;
+      // }
 
       if (changeAddress) {
         dispatch({
@@ -110,33 +110,35 @@ export default function ConnectWallet() {
         />
         <Price />
       </div>
-
-      <div className="wallet_radio_wrapper">
-        {wallets.map((key) => (
-          <div key={key}>
-            <input
-              key={key}
-              type="radio"
-              value={key}
-              name="wallet"
-              onChange={() => {
-                setWalletSelected(key);
-              }}
-            />
-            <img src={window.cardano[key].icon} width="25" height="25" />
-            {key}
-            <br />
-          </div>
-        ))}
+      <div className="connect_wrapper">
+        <div className="wallet_radio_wrapper">
+          {wallets.map((key) => (
+            <div key={key} className="wallets">
+              <input
+                key={key}
+                type="radio"
+                value={key}
+                name="wallet"
+                onChange={() => {
+                  setWalletSelected(key);
+                }}
+              />
+              <img src={window.cardano[key].icon} width="25" height="25" />
+              {key}
+              <br />
+            </div>
+          ))}
+        </div>
+        <button
+          className="connect_wallet"
+          onClick={() => {
+            wallets.length !== 0 ? enableWallet() : detectWallets();
+          }}
+        >
+          Connect Wallet
+        </button>
       </div>
-      <button
-        className="connect_wallet"
-        onClick={() => {
-          wallets.length !== 0 ? enableWallet() : detectWallets();
-        }}
-      >
-        Connect Wallet
-      </button>
+
       <Footer />
     </div>
   );
