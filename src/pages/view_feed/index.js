@@ -15,9 +15,6 @@ export default function ViewFeed() {
   const ipfsGateway = "https://gateway.ipfs.io/ipfs/";
   const [feed, setFeed] = useState("");
   const [contentHash, setContentHash] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [postedBy, setPostedBy] = useState("");
 
   const [copyButton, setCopyButton] = useState("Copy");
   const { metaHash } = useParams();
@@ -40,7 +37,6 @@ export default function ViewFeed() {
   useEffect(() => {
     feed &&
       setSpaceLeft(window.innerHeight - (container.current.clientHeight + 128));
-    console.log();
   }, [feed]);
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
@@ -68,18 +64,18 @@ export default function ViewFeed() {
       });
 
   const copyAddress = () => {
-    navigator.clipboard.writeText(postedBy);
+    navigator.clipboard.writeText(feed.fileHash);
     setCopyButton("Copied");
   };
 
   const downloadFile = () => {
-    saveAs(`${ipfsGateway}${contentHash}`, contentHash);
+    saveAs(`${ipfsGateway}${feed.fileHash}`, feed.fileHash);
   };
 
   return (
     <div className="view_feed">
       <Header />
-      {console.log(feed)}
+
       {feed ? (
         <div className="view_feed_container" ref={container}>
           <div className="conent_title">{feed.name}</div>
@@ -135,7 +131,7 @@ export default function ViewFeed() {
             <div className="address_container">
               <h3>By:</h3>
               <div className="address" style={{ display: "inline-block" }}>
-                {`${feed.wallet.slice(0, 9)}......${postedBy.slice(-9)}`}
+                {`${feed.wallet.slice(0, 9)}......${feed.wallet.slice(-9)}`}
                 &nbsp;&nbsp;&nbsp;
                 <button className="copy_address" onClick={copyAddress}>
                   {copyButton}

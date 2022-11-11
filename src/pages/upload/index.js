@@ -23,7 +23,6 @@ export default function Upload() {
 
   useEffect(() => {
     function handleWindowResize() {
-      console.log(window.innerHeight, container.current.clientHeight + 128);
       setSpaceLeft(window.innerHeight - (container.current.clientHeight + 128));
     }
     setSpaceLeft(window.innerHeight - (container.current.clientHeight + 128));
@@ -253,7 +252,6 @@ export default function Upload() {
         <div className="status">
           <p>Upload status: {status}</p>
         </div>
-        {console.log(spaceLeft)}
       </div>
       {spaceLeft < 85 ? <Footer scrollable /> : <Footer />}
     </div>

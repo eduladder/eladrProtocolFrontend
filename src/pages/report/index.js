@@ -8,10 +8,9 @@ export default function Report() {
   const [spaceLeft, setSpaceLeft] = useState();
   useEffect(() => {
     function handleWindowResize() {
-      console.log(window.innerHeight, container.current.clientHeight + 166);
-      setSpaceLeft(window.innerHeight - (container.current.clientHeight + 166));
+      setSpaceLeft(window.innerHeight - 794);
     }
-    setSpaceLeft(window.innerHeight - (container.current.clientHeight + 166));
+    setSpaceLeft(window.innerHeight - 794);
 
     window.addEventListener("resize", handleWindowResize);
 
@@ -40,7 +39,8 @@ export default function Report() {
         ></textarea>
         <button className="report_btn">Report</button>
       </div>
-      {spaceLeft < 85 ? <Footer scrollable /> : <Footer />}
+
+      {spaceLeft < 44 ? <Footer scrollable /> : <Footer />}
     </div>
   );
 }

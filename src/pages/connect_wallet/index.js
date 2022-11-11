@@ -75,12 +75,12 @@ export default function ConnectWallet() {
         .getBech32();
 
       const hasEladr = await hasEladrBalance(changeAddress);
-      if (!hasEladr) {
-        const message =
-          "Wallet doesn't have Eduladder Tokens. Please purchase some tokens or try a different wallet.";
-        alert(message);
-        return;
-      }
+      // if (!hasEladr) {
+      //   const message =
+      //     "Wallet doesn't have Eduladder Tokens. Please purchase some tokens or try a different wallet.";
+      //   alert(message);
+      //   return;
+      // }
 
       if (changeAddress) {
         dispatch({
