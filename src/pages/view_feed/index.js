@@ -28,12 +28,9 @@ export default function ViewFeed() {
   useEffect(() => {
     get_feed();
     function handleWindowResize() {
-      // console.log(window.innerHeight, container.current.clientHeight + 172);
-      setSpaceLeft(window.innerHeight - (container.current.clientHeight + 172));
+      setSpaceLeft(window.innerHeight - (container.current.clientHeight + 128));
     }
-    // console.log("Hello", details.current.clientHeight);
 
-    // setSpaceLeft(window.innerHeight - details.current.clientHeight);
     window.addEventListener("resize", handleWindowResize);
 
     return () => {
@@ -42,7 +39,7 @@ export default function ViewFeed() {
   }, []);
   useEffect(() => {
     feed &&
-      setSpaceLeft(window.innerHeight - (container.current.clientHeight + 172));
+      setSpaceLeft(window.innerHeight - (container.current.clientHeight + 128));
     console.log();
   }, [feed]);
   function getWindowSize() {
@@ -154,7 +151,7 @@ export default function ViewFeed() {
       ) : (
         <h1>Loading...</h1>
       )}
-      {/* {console.log(spaceLeft)} */}
+
       {feed && (spaceLeft < 90 ? <Footer scrollable /> : <Footer />)}
     </div>
   );
