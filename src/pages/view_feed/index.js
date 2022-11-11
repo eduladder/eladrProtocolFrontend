@@ -129,9 +129,10 @@ export default function ViewFeed() {
 
             <br />
             <div className="address_container">
-              <h3>By:</h3>
+              <h3>By:&nbsp;</h3>
               <div className="address" style={{ display: "inline-block" }}>
-                {`${feed.wallet.slice(0, 9)}......${feed.wallet.slice(-9)}`}
+                <a href={`https://cardanoscan.io/address/${feed.wallet}`} target="_blank">{`${feed.wallet.slice(0, 9)}......${feed.wallet.slice(-9)}`}</a>
+                
                 &nbsp;&nbsp;&nbsp;
                 <button className="copy_address" onClick={copyAddress}>
                   {copyButton}
