@@ -16,7 +16,7 @@ export default function Header({ searchedTerm, seachedResults }) {
   const navigate = useNavigate();
   const [eladInr, setEladrInr] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
-  const [showSearch, setShowSearch] = useState(true);
+  const [showSearch, setShowSearch] = useState(false);
 
   const customConfig = {
     headers: {
@@ -85,7 +85,14 @@ export default function Header({ searchedTerm, seachedResults }) {
         setShowSearch={setShowSearch}
       />
       <Link to={"/"}>
-        <div className={`nav_btn ${showMenu ? "show" : ""}`}>Home</div>
+        <div
+          className={`nav_btn ${showMenu ? "show" : ""}`}
+          onClick={() => {
+            setShowMenu(false);
+          }}
+        >
+          Home
+        </div>
       </Link>
       <Link to={"/upload"}>
         <div className={`nav_btn ${showMenu ? "show" : ""}`}>Upload</div>

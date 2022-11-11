@@ -2,10 +2,7 @@ import { Link } from "react-router-dom";
 import "./style.css";
 export default function Footer({ scrollable }) {
   return (
-    <div
-      className="footer"
-      style={{ position: `${scrollable ? "relative" : "absolute"}` }}
-    >
+    <div className={` footer ${scrollable ? "scrollable" : "fixed"}`}>
       <Link to={"/terms_of_services"} className="footer_item">
         TERMS OF SERVICES
       </Link>

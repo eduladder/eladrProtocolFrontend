@@ -7,7 +7,7 @@
 }
 
 .report_title {
-  font-size: 3.5rem;
+  font-size: 3rem;
 }
 .report_reason {
   color: #000;
@@ -35,3 +35,11 @@
   font-size: 2rem;
   color: #fff;
 }
+/* ---------------Media-Queries----------------- */
+@media (max-width: 1000px) {
+  .report_title {
+    width: 60vw;
+  }
+}
+
+/* ---------------Media-Queries----------------- */

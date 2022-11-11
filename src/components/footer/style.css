@@ -8,6 +8,14 @@
   justify-content: center;
 }
 
+.scrollable {
+  position: relative;
+}
+.fixed {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 div .footer_item {
   padding: 2rem;
 }

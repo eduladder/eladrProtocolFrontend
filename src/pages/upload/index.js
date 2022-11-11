@@ -8,6 +8,7 @@ import axios from "axios";
 import Footer from "../../components/footer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Upload() {
   const [file, setFile] = useState(null);
@@ -16,8 +17,27 @@ export default function Upload() {
   const title = useRef(null);
   const description = useRef(null);
   const { user } = useSelector((state) => ({ ...state }));
-
   const navigate = useNavigate();
+  const container = useRef();
+  const [spaceLeft, setSpaceLeft] = useState();
+
+  useEffect(() => {
+    function handleWindowResize() {
+      console.log(window.innerHeight, container.current.clientHeight + 128);
+      setSpaceLeft(window.innerHeight - (container.current.clientHeight + 128));
+    }
+    setSpaceLeft(window.innerHeight - (container.current.clientHeight + 128));
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+  function getWindowSize() {
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth, innerHeight };
+  }
 
   const handleFile = (e) => {
     setFile(e.target.files.item(0));
@@ -148,7 +168,7 @@ export default function Upload() {
   return (
     <div className="upload">
       <Header />
-      <div className="upload_container">
+      <div className="upload_container" ref={container}>
         <input
           type="text"
           placeholder="Title"
@@ -233,8 +253,9 @@ export default function Upload() {
         <div className="status">
           <p>Upload status: {status}</p>
         </div>
-        <Footer scrollable />
+        {console.log(spaceLeft)}
       </div>
+      {spaceLeft < 85 ? <Footer scrollable /> : <Footer />}
     </div>
   );
 }

@@ -20,7 +20,7 @@ export default function Report() {
         ></textarea>
         <button className="report_btn">Report</button>
       </div>
-      <Footer />
+      <Footer scrollable />
     </div>
   );
 }

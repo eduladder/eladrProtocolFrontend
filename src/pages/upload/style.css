@@ -1,9 +1,8 @@
 .upload_container {
   display: flex;
-  height: 100vh;
   align-items: center;
   flex-direction: column;
-  padding-top: 8rem;
+  margin-top: 128px;
 }
 
 .title_box {
@@ -12,7 +11,7 @@
   font-size: 2.25rem;
   padding: 0.5rem 1.5rem 0.5rem 1rem;
   background-color: lightgray;
-  border-radius: 2rem;
+  border-radius: 1rem;
   margin-bottom: 3rem;
   width: 60%;
 }
@@ -40,6 +39,7 @@
   display: flex;
   gap: 5rem;
   flex-direction: column;
+  width: 60%;
 }
 
 .upload_file {

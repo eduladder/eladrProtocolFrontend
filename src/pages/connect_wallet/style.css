@@ -29,3 +29,32 @@ a {
   align-items: center;
   padding: 0 3rem;
 }
+.connect_wrapper {
+  display: flex;
+  gap: 15em;
+  align-items: center;
+  margin: 0 3rem;
+}
+
+.wallets {
+  display: flex;
+  align-items: center;
+}
+
+/* --------------------Media-Query-------------------------- */
+
+@media (max-width: 1000px) {
+  .connect_wallet_nav .price {
+    display: block;
+  }
+  .connect_wrapper {
+    gap: 5em;
+    flex-direction: column;
+  }
+  .wallet_radio_wrapper {
+    display: flex;
+    gap: 4rem;
+  }
+}
+
+/* --------------------Media-Query-------------------------- */

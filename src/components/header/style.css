@@ -33,21 +33,28 @@
   background-color: tan;
   padding: 1rem;
   font-size: 1rem;
-  border-radius: 1rem;
+  border-radius: 10px;
   cursor: pointer;
+}
+.nav_btn:hover {
   box-shadow: 1px 1px 13px rgb(0 0 0 / 40%);
 }
-
 .disconnect_btn {
-  color: tan;
-  border: 5px solid tan;
-  padding: 1rem;
+  color: #fff;
+  border: none;
+  background-color: #f55e30;
+  padding: 1.2rem;
   font-size: 1rem;
-  border-radius: 1rem;
+  border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
   box-shadow: 1px 1px 10px rgb(0 0 0 / 30%);
 }
+
+.disconnect_btn:hover {
+  box-shadow: 1px 1px 13px rgb(0 0 0 / 40%);
+}
+
 .search {
   display: flex;
   gap: 1rem;
@@ -111,7 +118,7 @@
 /* ------------------Media Queries--------------------- */
 @media (max-width: 1000px) {
   .full_logo {
-    margin-left: 10em;
+    margin-left: 13em;
   }
 
   .menu_icon {
@@ -194,7 +201,7 @@
     border: none;
     font-size: 2rem;
     outline: none;
-    padding: 0px 56px 0px 17px;
+    padding: 0px 71px 0px 17px;
     background-color: white;
   }
   .responsive_search .search_result_box {
@@ -208,6 +215,16 @@
     right: 2.5%;
     font-size: 13px;
     padding: 5px;
+  }
+  .search_btn {
+    position: absolute;
+    right: 2%;
+    top: 30%;
+  }
+}
+@media (max-width: 800px) {
+  .full_logo {
+    margin-left: 6em;
   }
 }
 
