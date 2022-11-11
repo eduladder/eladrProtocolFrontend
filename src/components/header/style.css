@@ -160,8 +160,14 @@
     align-self: center;
     z-index: 99;
   }
+
+  .active_menu .disconnect_btn {
+    padding: 1rem 2rem;
+  }
+
   .active_menu .nav_btn {
     transform: translateX(0%);
+    padding: 1rem 5rem;
   }
   .close_btn {
     display: none;
