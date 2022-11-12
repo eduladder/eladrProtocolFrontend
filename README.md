@@ -17,15 +17,5 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 
-## Setting up Environment File
 
-In the root directory of project, run:
-
-### `touch .env`
-
-To create `.env` file.
-
-Populate the .env file with the following Environment Variable and value
-
-`REACT_APP_BACKEND_URL=http://localhost:8000`
 
