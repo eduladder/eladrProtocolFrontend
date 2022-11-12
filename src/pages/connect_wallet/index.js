@@ -47,12 +47,12 @@ export default function ConnectWallet() {
       );
 
       for (let token of data) {
-        const balance = token.balance.replace(",", "");
+        const balance = parseFloat(token.balance.replaceAll(",", ""));
         if (
           token.name === name &&
           token.fingerPrint === fingerPrint &&
           token.policy === policyId &&
-          parseFloat(balance) > 0
+          balance > 0
         ) {
           return true;
         }
