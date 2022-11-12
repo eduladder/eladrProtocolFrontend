@@ -2,3 +2,22 @@
   display: flex;
   align-items: center;
 }
+.price_section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.buy_sell {
+  padding: 11px;
+  background-color: rgb(95 227 27);
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1px;
+}
+.buy_sell:hover {
+  box-shadow: 1px 1px 13px rgb(0 0 0 / 40%);
+}
