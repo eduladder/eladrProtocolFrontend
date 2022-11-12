@@ -108,7 +108,7 @@ export default function ConnectWallet() {
           width="170"
           height="100"
         />
-        <Price />
+        <Price connect_wallet />
       </div>
       <div className="connect_wrapper">
         <div className="wallet_radio_wrapper">
