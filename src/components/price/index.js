@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./style.css";
 
-export default function Price({ show }) {
+export default function Price({ show, connect_wallet, balanceInr }) {
   const [eladInr, setEladrInr] = useState(0);
   const customConfig = {
     headers: {
@@ -51,7 +51,15 @@ export default function Price({ show }) {
           height="50"
           className="logo"
         />
-        <p> INR(₹): {eladInr.toFixed(5)}</p>
+
+        {connect_wallet ? (
+          <p> INR(₹): {eladInr.toFixed(5)}</p>
+        ) : (
+          <p>
+            Per Token/Total: {eladInr.toFixed(5)}/ {balanceInr.toFixed(5)}{" "}
+            INR(₹)
+          </p>
+        )}
       </a>
     </div>
   );

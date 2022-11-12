@@ -15,7 +15,7 @@ export default function Header({ searchedTerm, seachedResults }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [eladInr, setEladrInr] = useState(0);
-  const [balanceInr, setBalanceInr] = useState(0)
+  const [balanceInr, setBalanceInr] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
@@ -52,18 +52,23 @@ export default function Header({ searchedTerm, seachedResults }) {
 
     setEladrInr(adaInr * eladrAda);
 
-    response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/evaluvate/${user.wallet_address.toString()}`);
+    response = await axios.get(
+      `${
+        process.env.REACT_APP_BACKEND_URL
+      }/evaluvate/${user.wallet_address.toString()}`
+    );
 
     for (let token of response.data) {
-        if (
-          token.name === name &&
-          token.fingerPrint === fingerPrint &&
-          token.policy === policyId
-        ) {
-          const balance = (parseFloat(token.balance.replaceAll(",", "")) * adaInr * eladrAda)
-          setBalanceInr(balance);
-          break;
-        }
+      if (
+        token.name === name &&
+        token.fingerPrint === fingerPrint &&
+        token.policy === policyId
+      ) {
+        const balance =
+          parseFloat(token.balance.replaceAll(",", "")) * adaInr * eladrAda;
+        setBalanceInr(balance);
+        break;
+      }
     }
   };
 
@@ -72,7 +77,7 @@ export default function Header({ searchedTerm, seachedResults }) {
       await fetchPriceAndBalance();
     }
     loadData();
-    console.log(balanceInr)
+    console.log(balanceInr);
   }, []);
 
   const disconnect = () => {
@@ -127,7 +132,8 @@ export default function Header({ searchedTerm, seachedResults }) {
       >
         Disconnect
       </button>
-      <Price show={showMenu} />
+
+      <Price show={showMenu} balanceInr={balanceInr} />
       <div
         className="search_icon_btn"
         onClick={() => {
