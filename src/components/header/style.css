@@ -115,15 +115,6 @@
   display: none;
 }
 
-.buy_sell {
-  padding: 1.2rem;
-  background-color: rgb(187, 187, 66);
-  border-radius: 10px;
-}
-.buy_sell:hover {
-  box-shadow: 1px 1px 13px rgb(0 0 0 / 40%);
-}
-
 .total_balance {
   font-size: 1.2rem;
 }
@@ -220,7 +211,7 @@
     right: 2rem;
   }
   .show_price {
-    display: block;
+    display: flex;
     position: absolute;
     top: 16%;
     left: 50%;
@@ -229,7 +220,7 @@
     padding: 2rem;
     font-size: 1.5rem;
     border-radius: 10px;
-    width: 563px;
+    width: 582px;
   }
 
   .responsive_search {
@@ -280,7 +271,7 @@
     font-size: 1.2rem;
   }
   .show_price {
-    width: 470px;
+    width: 472px;
     padding: 1.5rem;
     top: 18%;
   }
@@ -290,7 +281,7 @@
     font-size: 1rem;
   }
   .show_price {
-    width: 411px;
+    width: 413px;
   }
 }
 

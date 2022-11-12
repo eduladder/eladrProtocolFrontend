@@ -39,28 +39,34 @@ export default function Price({ show, connect_wallet, balanceInr }) {
   }, []);
 
   return (
-    <div className={`price ${show ? "show_price" : ""}`}>
-      <a
-        href="https://eduladder.com/crypto/swapsell.php"
-        className="eladr_price"
-        target="_blank"
-      >
-        <img
-          src="https://camo.githubusercontent.com/cd2ef7ae3c1a5ec66d20a154230ec52c32d015d53fbcaae658451e69732267ae/68747470733a2f2f692e696d6775722e636f6d2f505169656c756f2e706e67"
-          width="50"
-          height="50"
-          className="logo"
-        />
+    <div className={`price  eladr_price ${show ? "show_price" : ""}`}>
+      <img
+        src="https://camo.githubusercontent.com/cd2ef7ae3c1a5ec66d20a154230ec52c32d015d53fbcaae658451e69732267ae/68747470733a2f2f692e696d6775722e636f6d2f505169656c756f2e706e67"
+        width="68"
+        height="68"
+        className="logo"
+      />
 
-        {connect_wallet ? (
+      {connect_wallet ? (
+        <>
           <p> INR(₹): {eladInr.toFixed(5)}</p>
-        ) : (
+        </>
+      ) : (
+        <div className="price_section">
           <p>
             Per Token/Total: {eladInr.toFixed(5)}/ {balanceInr.toFixed(5)}{" "}
             INR(₹)
           </p>
-        )}
-      </a>
+          <a
+            href="https://eduladder.com/crypto/swapsell.php"
+            className="buy_sell"
+            target="_blank"
+          >
+            BUY / SELL
+          </a>
+        </div>
+      )}
     </div>
   );
 }
+// href="https://eduladder.com/crypto/swapsell.php"
