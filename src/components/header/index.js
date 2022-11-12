@@ -2,7 +2,7 @@ import "./style.css";
 import SearchMenu from "./SearchMenu";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Price from "../price";
@@ -15,8 +15,16 @@ export default function Header({ searchedTerm, seachedResults }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [eladInr, setEladrInr] = useState(0);
+  const [balanceInr, setBalanceInr] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const { user } = useSelector((state) => ({ ...state }));
+
+  const [name, fingerPrint, policyId] = [
+    "EduladderToken",
+    "asset1ny2ehvl20cp5y7mmn5qq332sgdncdmsgrcqlwh",
+    "2d420236ffaada336c21e3f4520b799f6e246d8618f2fc89a4907da6",
+  ];
 
   const customConfig = {
     headers: {
@@ -24,7 +32,7 @@ export default function Header({ searchedTerm, seachedResults }) {
     },
   };
 
-  const fetchPrice = async () => {
+  const fetchPriceAndBalance = async () => {
     let response = await axios.get(
       "https://api.coingecko.com/api/v3/simple/price?ids=CARDANO&vs_currencies=INR",
       customConfig
@@ -43,13 +51,33 @@ export default function Header({ searchedTerm, seachedResults }) {
       ].last_price;
 
     setEladrInr(adaInr * eladrAda);
+
+    response = await axios.get(
+      `${
+        process.env.REACT_APP_BACKEND_URL
+      }/evaluvate/${user.wallet_address.toString()}`
+    );
+
+    for (let token of response.data) {
+      if (
+        token.name === name &&
+        token.fingerPrint === fingerPrint &&
+        token.policy === policyId
+      ) {
+        const balance =
+          parseFloat(token.balance.replaceAll(",", "")) * adaInr * eladrAda;
+        setBalanceInr(balance);
+        break;
+      }
+    }
   };
 
   useEffect(() => {
     async function loadData() {
-      await fetchPrice();
+      await fetchPriceAndBalance();
     }
     loadData();
+    console.log(balanceInr);
   }, []);
 
   const disconnect = () => {
@@ -104,7 +132,8 @@ export default function Header({ searchedTerm, seachedResults }) {
       >
         Disconnect
       </button>
-      <Price show={showMenu} />
+
+      <Price show={showMenu} balanceInr={balanceInr} />
       <div
         className="search_icon_btn"
         onClick={() => {

@@ -32,7 +32,7 @@
 .nav_btn {
   background-color: tan;
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -115,8 +115,48 @@
   display: none;
 }
 
+.buy_sell {
+  padding: 1.2rem;
+  background-color: rgb(187, 187, 66);
+  border-radius: 10px;
+}
+.buy_sell:hover {
+  box-shadow: 1px 1px 13px rgb(0 0 0 / 40%);
+}
+
+.total_balance {
+  font-size: 1.2rem;
+}
 /* ------------------Media Queries--------------------- */
-@media (max-width: 1000px) {
+@media (max-width: 1250px) {
+  .input_and_result_wrap input {
+    width: 250px;
+  }
+  .search_result_box {
+    width: 250px;
+  }
+}
+@media (max-width: 1178px) {
+  .input_and_result_wrap input {
+    width: 220px;
+  }
+  .search_result_box {
+    width: 220px;
+  }
+}
+@media (max-width: 1164px) {
+  .input_and_result_wrap input {
+    width: 200px;
+  }
+  .search_result_box {
+    width: 200px;
+  }
+  .price {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 1080px) {
   .full_logo {
     margin-left: 13em;
   }
@@ -160,8 +200,14 @@
     align-self: center;
     z-index: 99;
   }
+
+  .active_menu .disconnect_btn {
+    padding: 1rem 2rem;
+  }
+
   .active_menu .nav_btn {
     transform: translateX(0%);
+    padding: 1rem 5rem;
   }
   .close_btn {
     display: none;
@@ -170,8 +216,8 @@
   .active_menu .close_btn {
     display: block;
     position: absolute;
-    top: 4rem;
-    right: 4rem;
+    top: 2rem;
+    right: 2rem;
   }
   .show_price {
     display: block;
@@ -183,6 +229,7 @@
     padding: 2rem;
     font-size: 1.5rem;
     border-radius: 10px;
+    width: 563px;
   }
 
   .responsive_search {
@@ -225,6 +272,25 @@
 @media (max-width: 800px) {
   .full_logo {
     margin-left: 6em;
+  }
+}
+
+@media (max-width: 614px) {
+  .price {
+    font-size: 1.2rem;
+  }
+  .show_price {
+    width: 470px;
+    padding: 1.5rem;
+    top: 18%;
+  }
+}
+@media (max-width: 530px) {
+  .price {
+    font-size: 1rem;
+  }
+  .show_price {
+    width: 411px;
   }
 }
 

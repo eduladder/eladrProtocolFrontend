@@ -216,7 +216,7 @@ export default function Upload() {
           </div>
 
           <div className="upload_file">
-            <div className="title">Choose Thumbnail (Optional)</div>
+            <div className="title thumbnail">Choose Thumbnail (Optional)</div>
 
             {thumbnail ? (
               <div className="file_box">

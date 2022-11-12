@@ -101,8 +101,8 @@ export default function Feed({ feed, home }) {
             ></div>
           ))}
         <div className="feed_description">
-          {feed.description.toString().length > 30
-            ? `${feed.description.toString().slice(0, 31)}.....`
+          {feed.description.toString().length > 45
+            ? `${feed.description.toString().slice(0, 46)}.....`
             : feed.description}
         </div>
       </div>
