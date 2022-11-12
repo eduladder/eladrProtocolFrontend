@@ -148,20 +148,13 @@
   .input_and_result_wrap input {
     width: 200px;
   }
+  .search_result_box {
+    width: 200px;
+  }
   .price {
     font-size: 0.9rem;
   }
 }
-/* @media (max-width: 1118px) {
-  .input_and_result_wrap input {
-    width: 160px;
-  }
-}
-@media (max-width: 1064px) {
-  .input_and_result_wrap input {
-    width: 140px;
-  }
-} */
 
 @media (max-width: 1080px) {
   .full_logo {
