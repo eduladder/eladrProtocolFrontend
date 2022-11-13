@@ -115,14 +115,14 @@ export default function SearchMenu({
                     setSearchTerm("");
                   }}
                 >
-                  {!result.title.includes(searchTerm) &&
-                  result.description.includes(searchTerm)
-                    ? result.description.toString().length > 16
+                  {!result.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+                  result.description.toLowerCase().includes(searchTerm.toLowerCase())
+                    ? (result.description.toString().length > 16
                       ? `${result.description.toString().slice(0, 17)}...`
-                      : result.desciption
-                    : result.title.toString().length > 16
+                      : result.desciption)
+                    : (result.title.toString().length > 16
                     ? `${result.title.toString().slice(0, 17)}...`
-                    : result.title}
+                    : result.title)}
                 </Link>
               ))}
             </div>

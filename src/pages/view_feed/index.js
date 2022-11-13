@@ -64,8 +64,11 @@ export default function ViewFeed() {
       });
 
   const copyAddress = () => {
-    navigator.clipboard.writeText(feed.fileHash);
+    navigator.clipboard.writeText(feed.wallet);
     setCopyButton("Copied");
+    setTimeout(() => {
+      setCopyButton("Copy")
+    }, 5000)
   };
 
   const downloadFile = () => {
