@@ -20,7 +20,7 @@ export default function SearchResults() {
 
   useEffect(() => {
     search();
-  });
+  }, []);
 
   const search = async () => {
     try {
