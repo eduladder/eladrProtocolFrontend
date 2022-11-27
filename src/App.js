@@ -10,6 +10,7 @@ import Upload from "./pages/upload";
 import ViewFeed from "./pages/view_feed";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
+import MyFiles from "./pages/my_files";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route element={<LoggedInRoutes />}>
           <Route path="/" element={<Home />} exact />
           <Route path="/upload" element={<Upload />} exact />
+          <Route path="/my_files" element={<MyFiles />} exact />
 
           <Route path="/:metaHash" element={<ViewFeed />} exact />
           <Route path="/search_results" element={<SearchResults />} exact />

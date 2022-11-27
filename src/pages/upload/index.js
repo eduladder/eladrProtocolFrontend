@@ -134,7 +134,7 @@ export default function Upload() {
         const dbRecord = {
           vidHash: fileHash,
           metaHash: metaHash,
-          wallet: "addr1_dummy",
+          wallet: user.wallet_address,
           title: currentTitle,
           description: currentDesc,
           hashThumbnail: thumbHash,
