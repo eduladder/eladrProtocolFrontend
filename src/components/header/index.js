@@ -122,6 +122,11 @@ export default function Header({ searchedTerm, seachedResults }) {
           Home
         </div>
       </Link>
+
+      <Link to={"/my_files"}>
+        <div className={`nav_btn ${showMenu ? "show" : ""}`}>My files</div>
+      </Link> 
+
       <Link to={"/upload"}>
         <div className={`nav_btn ${showMenu ? "show" : ""}`}>Upload</div>
       </Link>
