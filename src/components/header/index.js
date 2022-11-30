@@ -41,7 +41,7 @@ export default function Header({ searchedTerm, seachedResults }) {
     const adaInr = response.data["cardano"]["inr"];
 
     response = await axios.get(
-      "http://analyticsv2.muesliswap.com/ticker",
+      "https://analyticsv2.muesliswap.com/ticker",
       customConfig
     );
 
