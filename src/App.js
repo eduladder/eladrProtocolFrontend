@@ -11,6 +11,8 @@ import ViewFeed from "./pages/view_feed";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 import MyFiles from "./pages/my_files";
+import YourFiles from "./pages/your_files";
+
 
 function App() {
   return (
@@ -20,7 +22,7 @@ function App() {
           <Route path="/" element={<Home />} exact />
           <Route path="/upload" element={<Upload />} exact />
           <Route path="/my_files" element={<MyFiles />} exact />
-
+          <Route path="/your_files/:wallet" element={<YourFiles />} exact />
           <Route path="/:metaHash" element={<ViewFeed />} exact />
           <Route path="/search_results" element={<SearchResults />} exact />
           <Route path="/report/:id" element={<Report />} exact />
