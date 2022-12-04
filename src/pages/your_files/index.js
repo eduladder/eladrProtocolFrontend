@@ -9,10 +9,11 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import {useSelector } from "react-redux";
 
 
-export default function MyFiles() {
+export default function YourFiles() {
   const page = 1;
   const { user } = useSelector((state) => ({ ...state }));
-  const userWallet = user.wallet_address.toString();
+  const userWalletArray = window.location.href.split('/');
+  const userWallet = userWalletArray[4];
   const apiPaths = `${process.env.REACT_APP_BACKEND_URL}/myfiles/`;
 
   const[feeds,setFeeds] =useState([]);
