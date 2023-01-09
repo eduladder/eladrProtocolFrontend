@@ -5,6 +5,7 @@ import Contact from "./pages/Contact";
 import Home from "./pages/home";
 import Report from "./pages/report";
 import SearchResults from "./pages/search_result/indexjs";
+import SearchCareerResults from "./pages/career/indexjs";
 import TermsOfServices from "./pages/terms_of_services";
 import Upload from "./pages/upload";
 import ViewFeed from "./pages/view_feed";
@@ -25,6 +26,7 @@ function App() {
           <Route path="/your_files/:wallet" element={<YourFiles />} exact />
           <Route path="/:metaHash" element={<ViewFeed />} exact />
           <Route path="/search_results" element={<SearchResults />} exact />
+          <Route path="/career" element={<SearchCareerResults />} exact />
           <Route path="/report/:id" element={<Report />} exact />
           <Route
             path="/terms_of_services"
