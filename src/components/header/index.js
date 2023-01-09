@@ -131,6 +131,10 @@ export default function Header({ searchedTerm, seachedResults }) {
         <div className={`nav_btn ${showMenu ? "show" : ""}`}>Upload</div>
       </Link>
 
+      <Link to={"/career"}>
+        <div className={`nav_btn ${showMenu ? "show" : ""}`}>Career</div>
+      </Link>
+
       <button
         className={`disconnect_btn ${showMenu ? "show" : ""}`}
         onClick={disconnect}
